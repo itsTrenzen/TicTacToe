@@ -15,6 +15,8 @@ let gameActive = true;
 //Player
 let player1 = [3,3,2,2,1,1];
 let player2 = [3,3,2,2,1,1];
+let currentMoveP1 = 1;
+let currentMoveP2 = 1;
 let isTurn = true;
 //Tiles
 let f1 = document.getElementById("f1");
@@ -34,11 +36,79 @@ let currentGridP1 = [0,0,0,
 let currentGridP2 = [0,0,0,
                      0,0,0,
                      0,0,0];
+//items
+let p1Item3_1 = document.querySelector(".p1Item3_1");
+let p1Item3_2 = document.querySelector(".p1Item3_2");
+let p1Item2_1 = document.querySelector(".p1Item2_1");
+let p1Item2_2 = document.querySelector(".p1Item2_2");
+let p1Item1_1 = document.querySelector(".p1Item1_1");
+let p1Item1_2 = document.querySelector(".p1Item1_2");
+let p2Item3_1 = document.querySelector(".p2Item3_1");
+let p2Item3_2 = document.querySelector(".p2Item3_2");
+let p2Item2_1 = document.querySelector(".p2Item2_1");
+let p2Item2_2 = document.querySelector(".p2Item2_2");
+let p2Item1_1 = document.querySelector(".p2Item1_1");
+let p2Item1_2 = document.querySelector(".p2Item1_2");
+//status bar
+let bar = document.querySelector(".statusBar");
 
+function setMove(p, n) {
+    if (p == 'p1') {
+        removeClassFromAllElements('setP1move');
+        switch (n) {
+            case 3.1:
+                p1Item3_1.classList.add("setP1move");
+                break;
+            case 3.2:
+                p1Item3_2.classList.add("setP1move");
+                break;
+            case 2.1:
+                p1Item2_1.classList.add("setP1move");
+                break;
+            case 2.2:
+                p1Item2_2.classList.add("setP1move");
+                break;
+            case 1.1:
+                p1Item1_1.classList.add("setP1move");
+                break;
+            case 1.2:
+                p1Item1_2.classList.add("setP1move");
+                break;
+            default:
+                break;
+        }
+    } else {
+        removeClassFromAllElements('setP2move');
+        switch (n) {
+            case 3.1:
+                p2Item3_1.classList.add("setP2move");
+                break;
+            case 3.2:
+                p2Item3_2.classList.add("setP2move");
+                break;
+            case 2.1:
+                p2Item2_1.classList.add("setP2move");
+                break;
+            case 2.2:
+                p2Item2_2.classList.add("setP2move");
+                break;
+            case 1.1:
+                p2Item1_1.classList.add("setP2move"); 
+                break;
+            case 1.2:
+                p2Item1_2.classList.add("setP2move");
+                break;
+            default:
+                break;
+        }
+    }
+}
 //firstly animate the clicked tile and then log it into the system
 function colorTile(tile) {
     if (gameActive) {
      if (isTurn) {
+        bar.classList.remove("barToLeft");
+        bar.classList.add("barToRight");
         switch (tile) {
             case "f1":
                 if (f1.classList != "tileClickedP1") {
@@ -98,6 +168,8 @@ function colorTile(tile) {
         }
         isTurn = false;
     } else {
+        bar.classList.remove("barToRight");
+        bar.classList.add("barToLeft");
         switch (tile) {
             case "f1":
                 if (f1.classList != "tileClickedP2") {
@@ -228,7 +300,7 @@ function checkWinNormalP2(grid) {
     }
 }
 //Checks win for advanced mode
-function checkWinAdvP1(grid) {
+function checkWinAdvP1() {
     let check1, check2, check3;
      
     for (let i = 0; i<=8; i++) {
@@ -260,32 +332,6 @@ function checkWinAdvP2() {
 function reset() {
     gameActive = true;
     isTurn = true;
-    f1.classList.remove("tileClickedP1");
-    f1.classList.remove("tileClickedP2");
-
-    f2.classList.remove("tileClickedP1");
-    f2.classList.remove("tileClickedP2");
-
-    f3.classList.remove("tileClickedP1");
-    f3.classList.remove("tileClickedP2");
-
-    f4.classList.remove("tileClickedP1");
-    f4.classList.remove("tileClickedP2");
-
-    f5.classList.remove("tileClickedP1");
-    f5.classList.remove("tileClickedP2");
-
-    f6.classList.remove("tileClickedP1");
-    f6.classList.remove("tileClickedP2");
-
-    f7.classList.remove("tileClickedP1");
-    f7.classList.remove("tileClickedP2");
-
-    f8.classList.remove("tileClickedP1");
-    f8.classList.remove("tileClickedP2");
-
-    f9.classList.remove("tileClickedP1");
-    f9.classList.remove("tileClickedP2");
 
     currentGridP1 = [0,0,0,
                      0,0,0,
@@ -294,4 +340,17 @@ function reset() {
     currentGridP2 = [0,0,0,
                      0,0,0,
                      0,0,0];
+    removeClassFromAllElements("setP1move");
+    removeClassFromAllElements("setP2move");
+    removeClassFromAllElements("tileClickedP1");
+    removeClassFromAllElements("tileClickedP2");
 }
+
+// Remove a class from all elements
+function removeClassFromAllElements(className) {
+    const elements = document.querySelectorAll('.' + className);
+    elements.forEach(function(element) {
+      element.classList.remove(className);
+    });
+  }
+  
