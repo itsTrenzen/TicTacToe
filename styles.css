@@ -116,26 +116,55 @@ nav li:hover {
     left: 40%;
     width: 600px;
     height: 120px;
-    display: grid;
-    grid-template-columns: 50%;
-    grid-template-rows: 50%;
     background-color: rgba(255, 255, 255,0.1);
     backdrop-filter: blur(10px);
     border-radius: 10px;
 }
+.p1Area {
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    grid-template-rows: 50% 50%;
+    position: absolute;
+    top: 20%;
+    left: 0;
+    width: 40%;
+    height: 20%;
+    padding-left: 2%;
+    
+}
 #player1 {
     position: absolute;
-    left: 25%;
+    left: 35%;
     border: 3px solid rgb(5, 199, 5);
     border-radius: 10px;
     padding: 7px;
 }
+.p2Area {
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    grid-template-rows: 50% 50%;
+    position: absolute;
+    top: 20%;
+    right: 35%;
+    width: 40%;
+    height: 20%;
+    padding-left: 2%;
+}
 #player2 {
     position: absolute;
-    left: 60%;
+    left: 50%;
     border: 3px solid red;
     border-radius: 10px;
     padding: 7px;
+}
+.item {
+    width: 40%;
+    height: 120%;
+    background-color: cadetblue;
+    border-radius: 3px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
 }
 
 .hide {

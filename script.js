@@ -1,9 +1,14 @@
 function setMode(mode) {
+    
     if (mode == 'nor') {
         document.title = "TicTacToe";
+        document.getElementById("header1").textContent = "TicTacToe";
+        if (document.getElementsByClassName("item").classList != "hide") document.getElementsByClassName("item").classList.add("hide");
     }
     if (mode == 'adv') {
         document.title = "TicTacToe Advanced"; 
+        document.getElementById("header1").textContent = "TicTacToe Advanced";
+        if (document.getElementsByClassName("item").classList == "hide") document.getElementsByClassName("item").classList.remove("hide");
     }
 }
 let gameActive = true;
@@ -30,38 +35,7 @@ let currentGridP2 = [0,0,0,
                      0,0,0,
                      0,0,0];
 
-let grid1 = [1,1,1,
-             0,0,0,
-             0,0,0];
-
-let grid2 = [0,0,0,
-             1,1,1,
-             0,0,0];
-
-let grid3 = [0,0,0,
-             0,0,0,
-             1,1,1];
-
-let grid4 = [1,0,0,
-             1,0,0,
-             1,0,0];
-            
-let grid5 = [0,1,0,
-             0,1,0,
-             0,1,0];
-            
-let grid6 = [0,0,1,
-             0,0,1,
-             0,0,1];
-
-let grid7 = [0,0,1,
-             0,1,0,
-             1,0,0];
-
-let grid8 = [1,0,0,
-             0,1,0,
-             0,0,1];
-
+//firstly animate the clicked tile and then log it into the system
 function colorTile(tile) {
     if (gameActive) {
      if (isTurn) {
@@ -180,67 +154,32 @@ function colorTile(tile) {
                 }
                 currentGridP2[8] = 1;
                 break;
-        }
+            }
         isTurn = true;
-    }
-    //check win of player 1
-    if (checkWinNormalP1(grid1)) {
-        alert("Player 1 won!");
-        gameActive = false;}
-    else if (checkWinNormalP1(grid2)) {
-        alert("Player 1 won!");
-        gameActive = false;}
-    else if (checkWinNormalP1(grid3)) {
-        alert("Player 1 won!");
-        gameActive = false;}
-    else if (checkWinNormalP1(grid4)) {
-        alert("Player 1 won!");
-        gameActive = false; }
-    else if (checkWinNormalP1(grid5)) {
-        alert("Player 1 won!");
-        gameActive = false; }
-    else if (checkWinNormalP1(grid6)) {
-        alert("Player 1 won!");
-        gameActive = false;}
-    else if (checkWinNormalP1(grid7)) {
-        alert("Player 1 won!");
-        gameActive = false; }
-    else if (checkWinNormalP1(grid8)) {
-        alert("Player 1 won!");
-        gameActive = false; }
-    //check win of player 2
-    if (checkWinNormalP2(grid1)) {
-        alert("Player 2 won!");
-        gameActive = false;}
-    else if (checkWinNormalP2(grid2)) {
-        alert("Player 2 won!");
-        gameActive = false;}
-    else if (checkWinNormalP2(grid3)) {
-        alert("Player 2 won!");
-        gameActive = false;}
-    else if (checkWinNormalP2(grid4)) {
-        alert("Player 2 won!");
-        gameActive = false;}
-    else if (checkWinNormalP2(grid5)) {
-        alert("Player 2 won!"); 
-        gameActive = false;}
-    else if (checkWinNormalP2(grid6)) {
-        alert("Player 2 won!");
-        gameActive = false;}
-    else if (checkWinNormalP2(grid7)) {
-        alert("Player 2 won!");
-        gameActive = false;}
-    else if (checkWinNormalP2(grid8)) {
-        alert("Player 2 won!");
-        gameActive = false;}
-    }
-}
-
-function checkWinNormalP1(grid) {
+        }
     
+    }
+
+//call of win functions for player 1
+    if (checkWinNormalP1()) {
+        alert("Player 1 won!");
+        gameActive = false;
+    }
+ 
+//call of win function of player 2
+    if (checkWinNormalP2()) {
+        alert("Player 2 won!");
+        gameActive = false;
+    }
+      
+}
+    
+
+//win check algorithms for normal mode
+function checkWinNormalP1() { 
     let check1, check2, check3;
      
-    for (let i = 0; i<=6; i++) {
+    for (let i = 0; i<=8; i++) {
         if (currentGridP1[check1] && currentGridP1[check2] && currentGridP1[check3]) {
             return true;
         } else if (i == 0) {
@@ -256,17 +195,44 @@ function checkWinNormalP1(grid) {
         } else if (i == 5) {
             check1 = 2; check2 = 5; check3 = 8;
         } else if (i == 6) {
-            check1, check2, check3 = 0, 4, 8;
+            check1 = 0; check2 = 4; check3 = 8;
         } else if (i == 7) {
             check1, check2, check3 = 2, 4, 6;
+            check1 = 2; check2 = 4; check3 = 6;
         }
     }
 }    
 function checkWinNormalP2(grid) {
     let check1, check2, check3;
      
-    for (let i = 0; i<=6; i++) {
+    for (let i = 0; i<=8; i++) {
         if (currentGridP2[check1] && currentGridP2[check2] && currentGridP2[check3]) {
+            return true;
+        } else if (i == 0) {
+            check1 = 0; check2 = 1; check3 = 2;
+        } else if (i == 1) {
+            check1 = 3; check2 = 4; check3 = 5;
+        } else if (i == 2) {
+            check1 = 6; check2 = 7; check3 = 8;
+        } else if (i == 3) {
+            check1 = 0; check2 = 3; check3 = 6;
+        } else if (i == 4) {
+            check1 = 1; check2 = 4; check3 = 7;
+        } else if (i == 5) {
+            check1 = 2; check2 = 5; check3 = 8;
+        } else if (i == 6) {
+            check1 = 0; check2 = 4; check3 = 8;
+        } else if (i == 7) {
+            check1 = 2; check2 = 4; check3 = 6;
+        }
+    }
+}
+//Checks win for advanced mode
+function checkWinAdvP1(grid) {
+    let check1, check2, check3;
+     
+    for (let i = 0; i<=8; i++) {
+        if (currentGridP1[check1] != 0 && currentGridP1[check2] != 0 && currentGridP1[check3] != 0) {
             return true;
         } else if (i == 0) {
             check1 = 0; check2 = 1; check3 = 2;
@@ -287,8 +253,12 @@ function checkWinNormalP2(grid) {
         }
     }
 }
+function checkWinAdvP2() {
+
+}
 
 function reset() {
+    gameActive = true;
     isTurn = true;
     f1.classList.remove("tileClickedP1");
     f1.classList.remove("tileClickedP2");
