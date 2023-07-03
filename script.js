@@ -55,7 +55,7 @@ let grid8 = [1,0,0,
              0,0,1];
 
 function colorTile(tile) {
-
+    if (gameActive) {
      if (isTurn) {
         switch (tile) {
             case "f1":
@@ -179,85 +179,105 @@ function colorTile(tile) {
     if (checkWinNormalP1(grid1)) {
         alert("Player 1 won!");
         gameActive = false;}
-    if (checkWinNormalP1(grid2)) {
+    else if (checkWinNormalP1(grid2)) {
         alert("Player 1 won!");
         gameActive = false;}
-    if (checkWinNormalP1(grid3)) {
+    else if (checkWinNormalP1(grid3)) {
         alert("Player 1 won!");
         gameActive = false;}
-    if (checkWinNormalP1(grid4)) {
+    else if (checkWinNormalP1(grid4)) {
         alert("Player 1 won!");
         gameActive = false; }
-    if (checkWinNormalP1(grid5)) {
+    else if (checkWinNormalP1(grid5)) {
         alert("Player 1 won!");
         gameActive = false; }
-    if (checkWinNormalP1(grid6)) {
+    else if (checkWinNormalP1(grid6)) {
         alert("Player 1 won!");
         gameActive = false;}
-    if (checkWinNormalP1(grid7)) {
+    else if (checkWinNormalP1(grid7)) {
         alert("Player 1 won!");
         gameActive = false; }
-    if (checkWinNormalP1(grid8)) {
+    else if (checkWinNormalP1(grid8)) {
         alert("Player 1 won!");
         gameActive = false; }
     //check win of player 2
     if (checkWinNormalP2(grid1)) {
         alert("Player 2 won!");
         gameActive = false;}
-    if (checkWinNormalP2(grid2)) {
+    else if (checkWinNormalP2(grid2)) {
         alert("Player 2 won!");
         gameActive = false;}
-    if (checkWinNormalP2(grid3)) {
+    else if (checkWinNormalP2(grid3)) {
         alert("Player 2 won!");
         gameActive = false;}
-    if (checkWinNormalP2(grid4)) {
+    else if (checkWinNormalP2(grid4)) {
         alert("Player 2 won!");
         gameActive = false;}
-    if (checkWinNormalP2(grid5)) {
+    else if (checkWinNormalP2(grid5)) {
         alert("Player 2 won!"); 
         gameActive = false;}
-    if (checkWinNormalP2(grid6)) {
+    else if (checkWinNormalP2(grid6)) {
         alert("Player 2 won!");
         gameActive = false;}
-    if (checkWinNormalP2(grid7)) {
+    else if (checkWinNormalP2(grid7)) {
         alert("Player 2 won!");
         gameActive = false;}
-    if (checkWinNormalP2(grid8)) {
+    else if (checkWinNormalP2(grid8)) {
         alert("Player 2 won!");
         gameActive = false;}
+    }
 }
 
 function checkWinNormalP1(grid) {
     
-    /*for (let i = 0; i < 9; i++) {
-        if (currentGridP1[i] != grid[i]) {
-            return false;
+    let check1, check2, check3;
+     
+    for (let i = 0; i<=6; i++) {
+        if (currentGridP1[check1] && currentGridP1[check2] && currentGridP1[check3]) {
+            return true;
+        } else if (i == 0) {
+            check1 = 0; check2 = 1; check3 = 2;
+        } else if (i == 1) {
+            check1 = 3; check2 = 4; check3 = 5;
+        } else if (i == 2) {
+            check1 = 6; check2 = 7; check3 = 8;
+        } else if (i == 3) {
+            check1 = 0; check2 = 3; check3 = 6;
+        } else if (i == 4) {
+            check1 = 1; check2 = 4; check3 = 7;
+        } else if (i == 5) {
+            check1 = 2; check2 = 5; check3 = 8;
+        } else if (i == 6) {
+            check1, check2, check3 = 0, 4, 8;
+        } else if (i == 7) {
+            check1, check2, check3 = 2, 4, 6;
         }
     }
-    return true;*/
-    let array = new let[9];
-    let counter = 0;
-    for (let i = 0; i < 9; i++) {
-        if (grid[i] == 1) {
-            array[counter] = i;
-            counter++;
-        }
-    }
-    for (let index = 0; index < 9; index++) {
-        if (currentGridP1[array[index]] != 1) {
-            return false;
-        } 
-    }
-    return true;
-}
+}    
 function checkWinNormalP2(grid) {
-    
-    for (let i = 0; i < 9; i++) {
-        if (currentGridP2[i] != grid[i]) {
-            return false;
+    let check1, check2, check3;
+     
+    for (let i = 0; i<=6; i++) {
+        if (currentGridP2[check1] && currentGridP2[check2] && currentGridP2[check3]) {
+            return true;
+        } else if (i == 0) {
+            check1 = 0; check2 = 1; check3 = 2;
+        } else if (i == 1) {
+            check1 = 3; check2 = 4; check3 = 5;
+        } else if (i == 2) {
+            check1 = 6; check2 = 7; check3 = 8;
+        } else if (i == 3) {
+            check1 = 0; check2 = 3; check3 = 6;
+        } else if (i == 4) {
+            check1 = 1; check2 = 4; check3 = 7;
+        } else if (i == 5) {
+            check1 = 2; check2 = 5; check3 = 8;
+        } else if (i == 6) {
+            check1, check2, check3 = 0, 4, 8;
+        } else if (i == 7) {
+            check1, check2, check3 = 2, 4, 6;
         }
     }
-    return true;
 }
 
 function reset() {

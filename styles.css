@@ -2,9 +2,50 @@ body {
     background: linear-gradient(90deg,black 10%,rgb(0, 0, 49) 70%, rgb(2, 2, 102)); 
     color: aliceblue;
     font-family: Impact;
+    margin: 0;
+    padding: 0;
 }
-
-.gameArea {
+header h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* Navigation Bar */
+nav {
+    background-color: #1a1c22;
+    padding: 0;
+}
+  
+nav ul {
+    list-style-type: none;
+    margin: 0%;
+    padding: 0%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  
+nav li {
+    padding: 2% 3% 2% 3%;
+}
+  
+nav a {
+    color: #f7f7f7;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+  
+nav li:hover {
+    background-color: #580ef6;
+}
+  
+#game {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.gameBoard {
     display: grid;
     position: absolute;
     top: 40%;
@@ -45,13 +86,10 @@ body {
     transform: scale(1.1);
 }
 #resetButton {
-    display: flex;
     position: absolute;
-    align-items: center;
-    justify-content: center;
     background-color: rgb(39, 39, 160);
-    top: 105%;
-    left: 40%;
+    bottom: 8%;
+    left: 50%;
     width: 100px;
     height: 35px;
     padding: 0;
@@ -63,8 +101,11 @@ body {
 }
 
 #players {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: absolute;
-    top:30%;
+    top: 30%;
     left: 40%;
     width: 600px;
     height: 120px;
