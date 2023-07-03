@@ -1,3 +1,11 @@
+function setMode(mode) {
+    if (mode == 'nor') {
+        document.title = "TicTacToe";
+    }
+    if (mode == 'adv') {
+        document.title = "TicTacToe Advanced"; 
+    }
+}
 let gameActive = true;
 //Player
 let player1 = [3,3,2,2,1,1];
