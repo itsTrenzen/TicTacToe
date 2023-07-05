@@ -52,18 +52,37 @@ nav li:hover {
     justify-content: center;
     align-items: center;
 }
-.gameBoard {
-    display: grid;
-    position: absolute;
-    top: 40%;
-    left: 40%;
-    width: 600px;
-    height: 600px;
-    background-color: rgba(255, 255, 255,0.1);
-    border-radius: 15px;
-    backdrop-filter: blur(10px);
-    grid-template-columns: 33% 33% 33%;
-    grid-template-rows: 33% 33% 33%;
+@media screen and (min-width:1024px) {
+    .gameBoard {
+        display: grid;
+        position: absolute;
+        top: 60%;
+        left: 50%;
+        width: 600px;
+        height: 600px;
+        background-color: rgba(255, 255, 255,0.1);
+        border-radius: 15px;
+        backdrop-filter: blur(10px);
+        grid-template-columns: 33% 33% 33%;
+        grid-template-rows: 33% 33% 33%;
+        transform: translate(-50%, -50%);
+    }
+}
+@media screen and (max-width:480px) {
+    .gameBoard {
+        display: grid;
+        position: absolute;
+        top: 60%;
+        left: 50%;
+        width: 400px;
+        height: 400px;
+        background-color: rgba(255, 255, 255,0.1);
+        border-radius: 15px;
+        backdrop-filter: blur(10px);
+        grid-template-columns: 33% 33% 33%;
+        grid-template-rows: 33% 33% 33%;
+        transform: translate(-50%, -50%);
+    }
 }
 
 .tile {
@@ -112,18 +131,29 @@ nav li:hover {
     justify-content: center;
     align-items: center;
     position: absolute;
-    top: 30%;
-    left: 40%;
+    top: 25%;
+    left: 50%;
     width: 600px;
     height: 120px;
     background-color: rgba(255, 255, 255,0.1);
     backdrop-filter: blur(10px);
     border-radius: 10px;
+    transform: translate(-50%, -50%);
 }
-.statusBar {
+.statusBarP1 {
     position: absolute;
     bottom: 20%;
-    left: 42%;
+    left: 41.5%;
+    width: 10%;
+    height: 5%;
+    background-color: white;
+    transform: translate(-50%,-50%);
+    border-radius: 10px;
+}
+.statusBarP2 {
+    position: absolute;
+    bottom: 20%;
+    right: 33%;
     width: 10%;
     height: 5%;
     background-color: white;
@@ -189,26 +219,4 @@ nav li:hover {
 }
 .setP2move {
     border: 1px solid red;
-}
-.barToRight {
-    animation: slideRight 0.3s ease-in 1 normal none;
-}
-.barToLeft {
-    animation: slideLeft 0.3s ease-in 1 normal none;
-}
-@keyframes slideRight {
-    from {
-        transform: translateX(0%);
-    }
-    to {
-        transform: translateX(50%);
-    }
-}
-@keyframes slideLeft {
-    from {
-        transform: translateX(0%);
-    }
-    to {
-        transform: translateX(-50%);
-    }
 }

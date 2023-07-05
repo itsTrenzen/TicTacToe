@@ -8,7 +8,7 @@
     <title class="titleAdv">TicTacToe Advanced</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<header onload="setMode('nor')">
+<header>
     <h1 id="header1">TicTacToe</h1>
     <nav>
         <ul>
@@ -38,7 +38,8 @@
                 <div class="item p2Item2_2" onclick="setMove('p2', 2.2)">2</div>
                 <div class="item p2Item1_2" onclick="setMove('p2', 1.2)">1</div>
             </div>
-            <div class="statusBar"></div>
+            <div class="statusBarP1"></div>
+            <div class="statusBarP2"></div>
         </section>
         <section class="gameBoard">       
             <div class="tile" id="f1" onclick="colorTile('f1')"></div>

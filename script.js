@@ -1,23 +1,12 @@
-function setMode(mode) {
-    
-    if (mode == 'nor') {
-        document.title = "TicTacToe";
-        document.getElementById("header1").textContent = "TicTacToe";
-        if (document.getElementsByClassName("item").classList != "hide") document.getElementsByClassName("item").classList.add("hide");
-    }
-    if (mode == 'adv') {
-        document.title = "TicTacToe Advanced"; 
-        document.getElementById("header1").textContent = "TicTacToe Advanced";
-        if (document.getElementsByClassName("item").classList == "hide") document.getElementsByClassName("item").classList.remove("hide");
-    }
-}
 let gameActive = true;
+let gameMode = "nor";
 //Player
 let player1 = [3,3,2,2,1,1];
 let player2 = [3,3,2,2,1,1];
 let currentMoveP1 = 1;
 let currentMoveP2 = 1;
 let isTurn = true;
+
 //Tiles
 let f1 = document.getElementById("f1");
 let f2 = document.getElementById("f2");
@@ -36,6 +25,11 @@ let currentGridP1 = [0,0,0,
 let currentGridP2 = [0,0,0,
                      0,0,0,
                      0,0,0];
+//status bar
+let statusBarP1 = document.querySelector(".statusBarP1");
+let statusBarP2 = document.querySelector(".statusBarP2");
+statusBarP2.classList.add("hide");
+
 //items
 let p1Item3_1 = document.querySelector(".p1Item3_1");
 let p1Item3_2 = document.querySelector(".p1Item3_2");
@@ -49,30 +43,57 @@ let p2Item2_1 = document.querySelector(".p2Item2_1");
 let p2Item2_2 = document.querySelector(".p2Item2_2");
 let p2Item1_1 = document.querySelector(".p2Item1_1");
 let p2Item1_2 = document.querySelector(".p2Item1_2");
-//status bar
-let bar = document.querySelector(".statusBar");
 
-function setMove(p, n) {
+let allItems = document.querySelectorAll(".item");
+setMode("nor");
+
+function setMode(mode) {
+    reset();
+    if (mode == 'nor') {
+        document.title = "TicTacToe";
+        document.getElementById("header1").textContent = "TicTacToe";
+        allItems.forEach(item => {
+            if (item.classList != "hide") item.classList.add("hide");    
+        });
+    }
+    if (mode == 'adv') {
+        document.title = "TicTacToe Advanced"; 
+        document.getElementById("header1").textContent = "TicTacToe Advanced";
+        allItems.forEach(item => { 
+            item.classList.remove("hide");    
+        });
+    }
+    gameMode = mode;
+}
+
+
+function setMove(p, n) { //p for player and n for the item selected
     if (p == 'p1') {
         removeClassFromAllElements('setP1move');
         switch (n) {
             case 3.1:
                 p1Item3_1.classList.add("setP1move");
+                currentMoveP1 = 3;
                 break;
             case 3.2:
                 p1Item3_2.classList.add("setP1move");
+                currentMoveP1 = 3;
                 break;
             case 2.1:
                 p1Item2_1.classList.add("setP1move");
+                currentMoveP1 = 2;
                 break;
             case 2.2:
                 p1Item2_2.classList.add("setP1move");
+                currentMoveP1 = 2;
                 break;
             case 1.1:
                 p1Item1_1.classList.add("setP1move");
+                currentMoveP1 = 1;
                 break;
             case 1.2:
                 p1Item1_2.classList.add("setP1move");
+                currentMoveP1 = 1;
                 break;
             default:
                 break;
@@ -82,21 +103,27 @@ function setMove(p, n) {
         switch (n) {
             case 3.1:
                 p2Item3_1.classList.add("setP2move");
+                currentMoveP2 = 3;
                 break;
             case 3.2:
                 p2Item3_2.classList.add("setP2move");
+                currentMoveP2 = 3;
                 break;
             case 2.1:
                 p2Item2_1.classList.add("setP2move");
+                currentMoveP2 = 2;
                 break;
             case 2.2:
                 p2Item2_2.classList.add("setP2move");
+                currentMoveP2 = 2;
                 break;
             case 1.1:
                 p2Item1_1.classList.add("setP2move"); 
+                currentMoveP2 = 1;
                 break;
             case 1.2:
                 p2Item1_2.classList.add("setP2move");
+                currentMoveP2 = 1;
                 break;
             default:
                 break;
@@ -107,8 +134,8 @@ function setMove(p, n) {
 function colorTile(tile) {
     if (gameActive) {
      if (isTurn) {
-        bar.classList.remove("barToLeft");
-        bar.classList.add("barToRight");
+        statusBarP1.classList.add("hide"); //animating statusbars
+        statusBarP2.classList.remove("hide");
         switch (tile) {
             case "f1":
                 if (f1.classList != "tileClickedP1") {
@@ -168,8 +195,8 @@ function colorTile(tile) {
         }
         isTurn = false;
     } else {
-        bar.classList.remove("barToRight");
-        bar.classList.add("barToLeft");
+        statusBarP2.classList.add("hide"); //animating statusbars
+        statusBarP1.classList.remove("hide");
         switch (tile) {
             case "f1":
                 if (f1.classList != "tileClickedP2") {
@@ -231,21 +258,27 @@ function colorTile(tile) {
         }
     
     }
+//call of win functions
+    if (gameMode == "nor") {
+        if (checkWinNormalP1()) {
+            alert("Player 1 won!");
+            gameActive = false;
+        }
+        else if (checkWinNormalP2()) {
+            alert("Player 2 won!");
+            gameActive = false;
+        }
+    } else {
+        if (checkWinAdvP1()) {
+            alert("Player 1 won!");
+            gameActive = false;
+        } else if (checkWinAdvP2()) {
+            alert("Player 2 won!");
+            gameActive = false;
+        }
 
-//call of win functions for player 1
-    if (checkWinNormalP1()) {
-        alert("Player 1 won!");
-        gameActive = false;
     }
- 
-//call of win function of player 2
-    if (checkWinNormalP2()) {
-        alert("Player 2 won!");
-        gameActive = false;
-    }
-      
-}
-    
+}    
 
 //win check algorithms for normal mode
 function checkWinNormalP1() { 
@@ -332,6 +365,8 @@ function checkWinAdvP2() {
 function reset() {
     gameActive = true;
     isTurn = true;
+    if (statusBarP2.classList != "hide") statusBarP2.classList.add("hide");
+    statusBarP1.classList.remove("hide");
 
     currentGridP1 = [0,0,0,
                      0,0,0,
