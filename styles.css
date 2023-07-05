@@ -295,3 +295,6 @@ nav li:hover {
 .setP2move {
     border: 1px solid red;
 }
+.setDisabled {
+    background-color: rgba(255, 255, 255,0.1);
+}
