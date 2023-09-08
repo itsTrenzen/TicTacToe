@@ -1,9 +1,10 @@
 let gameActive = true;
-let gameMode = "nor";
+let gameMode = "nor"; //either normal (nor) or advanced (adv)
+let counter = 0; //counting all made clicked fields
 //Player
-let player1 = [3,3,2,2,1,1];
-let player2 = [3,3,2,2,1,1];
-let currentMoveP1 = 1;
+let player1 = [3,3,2,2,1,1]; //inventory of player 1 for advanced game mode
+let player2 = [3,3,2,2,1,1]; //inventory of player 2 for advanced game mode
+let currentMoveP1 = 1; //current selected item from the moves inventory
 let currentMoveP2 = 1;
 let isTurn = true;
 
@@ -134,7 +135,7 @@ function setMove(p, n) { //p for player and n for the item selected
 }
 //function takes item from player
 function takeItem(p, item) {
-    if (p == "p1") {
+    if (p == "p1") { //for player 1
         for (let index = 0; index < player1.length; index++) {
             if (player1[index] != null && player1[index] == item) {
                 player1[index] == null; 
@@ -142,7 +143,7 @@ function takeItem(p, item) {
                 } 
             }
             return false;
-        } else {
+        } else { //for player 2
         for (let index = 0; index < player2.length; index++) {
             if (player2[index] != null && player2[index] == item) {
                 player2[index] == null; 
@@ -154,17 +155,17 @@ function takeItem(p, item) {
 }
 
 //firstly animate the clicked tile and then log it into the system
-function colorTile(tile) {
+function colorTile(tile) { 
     if (gameActive) {
-     if (isTurn) {
-        statusBarP1.classList.add("hide"); //animating statusbars
-        statusBarP2.classList.remove("hide");
+        if (isTurn) {
+            statusBarP1.classList.add("hide"); //animating statusbars
+            statusBarP2.classList.remove("hide");
         switch (tile) {
             case "f1":        
-                if (gameMode == "nor") {
-                    currentGridP1[0] = 1;
-                    if (f1.classList != "tileClickedP1") {
-                    f1.classList.add("tileClickedP1");
+                if (gameMode == "nor") { //checking the gamemode
+                    currentGridP1[0] = 1;//normally reserving the field
+                    if (f1.classList != "tileClickedP1") {  
+                    f1.classList.add("tileClickedP1"); //coloring the tile
                     }
                 } else {
                     currentGridP1[0] = currentMoveP1;
@@ -443,7 +444,7 @@ function colorTile(tile) {
         }
     
     }
-//call of win functions
+//check win functions
     if (gameMode == "nor") {
         if (checkWinNormalP1()) {
             alert("Player 1 won!");
@@ -453,6 +454,9 @@ function colorTile(tile) {
             alert("Player 2 won!");
             gameActive = false;
         }
+        if (counter == 9 && gameActive) {
+            itsTied();
+        } 
     } else {
         if (checkWinAdvP1()) {
             alert("Player 1 won!");
@@ -461,10 +465,16 @@ function colorTile(tile) {
             alert("Player 2 won!");
             gameActive = false;
         }
-
+        if (counter == 9 && gameActive) {
+            itsTied();
+        } 
     }
 }    
 
+function itsTied() {
+    gameActive = false;
+    alert("Tied!");
+}
 //win check algorithms for normal mode
 function checkWinNormalP1() { 
     let check1, check2, check3;
@@ -576,6 +586,7 @@ function checkWinAdvP2() {
 function reset() {
     gameActive = true;
     isTurn = true;
+    counter = 0;
     if (statusBarP2.classList != "hide") statusBarP2.classList.add("hide");
     statusBarP1.classList.remove("hide");
 

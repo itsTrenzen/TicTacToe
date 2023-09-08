@@ -68,19 +68,19 @@ nav li:hover {
         transform: translate(-50%, -50%);
     }
     #resetButton {
-    position: absolute;
-    background-color: rgb(39, 39, 160);
-    transform: translate(-50%,-50%);
-    bottom: 8%;
-    left: 50%;
-    width: 100px;
-    height: 35px;
-    padding: 0;
-    margin: 5px;
-    border: 2px solid rgb(19, 0, 65);
-    border-radius: 10px;
-    cursor: pointer;
-    transition: all 0.1s ease-in-out;
+        position: absolute;
+        background-color: rgb(39, 39, 160);
+        transform: translate(-50%,-50%);
+        bottom: 8%;
+        left: 50%;
+        width: 100px;
+        height: 35px;
+        padding: 0;
+        margin: 5px;
+        border: 2px solid rgb(19, 0, 65);
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.1s ease-in-out;
     }
     #resetButton:hover {
         transform: scale(1.1) translate(-50%,-50%);
@@ -94,7 +94,7 @@ nav li:hover {
         height: 185px;
         padding: 0;
         margin: 5px;
-        border: 2px solid rgb(19, 0, 65);
+        border: 5px solid rgb(19, 0, 65);
         border-radius: 10px;
         cursor: pointer;
         transition: all 0.1s ease-in-out;
@@ -182,11 +182,11 @@ nav li:hover {
         align-items: center;
         justify-content: center;
         background-color: rgb(39, 39, 160);
-        width: 120px;
-        height: 120px;
+        width: 115px;
+        height: 115px;
         padding: 0;
         margin: 5px;
-        border: 2px solid rgb(19, 0, 65);
+        border: 5px solid rgb(19, 0, 65);
         border-radius: 10px;
         cursor: pointer;
         transition: all 0.1s ease-in-out;
