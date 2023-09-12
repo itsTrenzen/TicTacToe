@@ -48,6 +48,7 @@ let p2Item1_2 = document.querySelector(".p2Item1_2");
 let allItems = document.querySelectorAll(".item");
 setMode("nor");
 
+//set the game mod
 function setMode(mode) {
     reset();
     if (mode == 'nor') {
@@ -135,7 +136,7 @@ function setMove(p, n) { //p for player and n for the item selected
 }
 //function takes item from player
 function takeItem(p, item) {
-    if (p == "p1") { //for player 1
+    if (p === "p1") { //for player 1
         for (let index = 0; index < player1.length; index++) {
             if (player1[index] != null && player1[index] == item) {
                 player1[index] == null; 
@@ -155,8 +156,10 @@ function takeItem(p, item) {
 }
 
 //firstly animate the clicked tile and then log it into the system
-function colorTile(tile) { 
+function clickTile(tile) { 
+
     if (gameActive) {
+        counter++;
         if (isTurn) {
             statusBarP1.classList.add("hide"); //animating statusbars
             statusBarP2.classList.remove("hide");
@@ -443,8 +446,7 @@ function colorTile(tile) {
         isTurn = true;
         }
     
-    }
-//check win functions
+ //check win functions
     if (gameMode == "nor") {
         if (checkWinNormalP1()) {
             alert("Player 1 won!");
@@ -467,10 +469,13 @@ function colorTile(tile) {
         }
         if (counter == 9 && gameActive) {
             itsTied();
-        } 
+            } 
+        }
     }
-}    
 
+} 
+
+//Tied alarm
 function itsTied() {
     gameActive = false;
     alert("Tied!");
@@ -527,7 +532,8 @@ function checkWinNormalP2(grid) {
         }
     }
 }
-//Checks win for advanced mode
+
+//win check algorithms for advanced mode
 function checkWinAdvP1() {
     let check1 = 1;
     let check2 = 1; 
@@ -555,6 +561,7 @@ function checkWinAdvP1() {
         }
     }
 }
+
 function checkWinAdvP2() {
     let check1 = 1;
     let check2 = 1; 
