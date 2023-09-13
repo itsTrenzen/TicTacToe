@@ -1,0 +1,7 @@
+Todo list:
+- add website icon
+- better url
+- adjust for screen sizes
+- online mode  
+    -competitive/casual
+    -play together via link
