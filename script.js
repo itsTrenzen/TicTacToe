@@ -2,8 +2,15 @@ let gameActive = true;
 let gameMode = "nor"; //either normal (nor) or advanced (adv)
 let counter = 0; //counting all made clicked fields
 //Player
-let player1 = [3, 3, 2, 2, 1, 1]; //inventory of player 1 for advanced game mode
-let player2 = [3, 3, 2, 2, 1, 1]; //inventory of player 2 for advanced game mode
+let player = {
+    "name": "",
+    "id": "",
+    "inventory": [{"i1": [1,1]}, {"i2": [2,2]}, {"i3": [3,3]}]
+};
+let player1 = new player;
+let player2 = new player;
+//let player1 = [3, 3, 2, 2, 1, 1]; //inventory of player 1 for advanced game mode
+//let player2 = [3, 3, 2, 2, 1, 1]; //inventory of player 2 for advanced game mode
 let currentMoveP1 = 1; //current selected item from the moves inventory
 let currentMoveP2 = 1;
 let isTurn = true;
@@ -20,7 +27,6 @@ let f8 = document.getElementById("f8");
 let f9 = document.getElementById("f9");
 //grids
 let currentGridP1 = [0, 0, 0, 0, 0, 0, 0, 0, 0];
-
 let currentGridP2 = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 //status bar
 let statusBarP1 = document.querySelector(".statusBarP1");
