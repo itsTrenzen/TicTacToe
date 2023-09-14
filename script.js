@@ -160,7 +160,7 @@ function setMove(p, n) {
 }*/
 
 //function takes item from player and returns it
-function getItem(p, item) {
+function getItem(p) {
 	if (p != null && item != null) {
 		if (p === "p1") {
 			//player 1
@@ -252,17 +252,16 @@ function clickTile(tile) {
 						//checking the gamemode
 						currentGridP1[0] = 1; //normally reserving the field
 						if (f1.classList != "tileClickedP1") {
-							//coloring tile
-							f1.classList.add("tileClickedP1"); //
+							f1.classList.add("tileClickedP1"); //coloring tile
 						}
 					} else {
 						//advanced mode
-						if (takeItem("p1", currentMoveP1) && currentGridP2[0] < currentMoveP1) {
+						if (getItem("p1") != 0 && currentGridP2[0] < currentMoveP1) {
+							//if (takeItem("p1", currentMoveP1) && currentGridP2[0] < currentMoveP1) {
 							//check for item availability
 							currentGridP1[0] = currentMoveP1;
-
+							//coloring tile
 							if (f1.classList != "tileClickedP1") {
-								//coloring tile
 								f1.classList.add("tileClickedP1"); //
 							}
 						} else {
@@ -279,8 +278,9 @@ function clickTile(tile) {
 							f2.classList.add("tileClickedP1");
 						}
 					} else {
-						if (takeItem("p1", currentMoveP1) && currentGridP2[1] < currentMoveP1) {
-							currentGridP1[0] = currentMoveP1;
+						if (getItem("p1") != 0 && currentGridP2[1] < currentMoveP1) {
+							//if (takeItem("p1", currentMoveP1) && currentGridP2[1] < currentMoveP1) {
+							currentGridP1[1] = currentMoveP1;
 							if (f2.classList != "tileClickedP1") {
 								f2.classList.add("tileClickedP1");
 							}
@@ -297,8 +297,9 @@ function clickTile(tile) {
 							f3.classList.add("tileClickedP1");
 						}
 					} else {
-						if (takeItem("p1", currentMoveP1) && currentGridP2[2] < currentMoveP1) {
-							currentGridP1[0] = currentMoveP1;
+						if (getItem("p1") != 0 && currentGridP2[2] < currentMoveP1) {
+							//if (takeItem("p1", currentMoveP1) && currentGridP2[2] < currentMoveP1) {
+							currentGridP1[2] = currentMoveP1;
 							if (f3.classList != "tileClickedP1") {
 								f3.classList.add("tileClickedP1");
 							}
@@ -315,8 +316,9 @@ function clickTile(tile) {
 							f4.classList.add("tileClickedP1");
 						}
 					} else {
-						if (takeItem("p1", currentMoveP1) && currentGridP2[3] < currentMoveP1) {
-							currentGridP1[0] = currentMoveP1;
+						if (getItem("p1") != 0 && currentGridP2[3] < currentMoveP1) {
+							//if (takeItem("p1", currentMoveP1) && currentGridP2[3] < currentMoveP1) {
+							currentGridP1[3] = currentMoveP1;
 							if (f4.classList != "tileClickedP1") {
 								f4.classList.add("tileClickedP1");
 							}
@@ -333,8 +335,9 @@ function clickTile(tile) {
 							f5.classList.add("tileClickedP1");
 						}
 					} else {
-						if (takeItem("p1", currentMoveP1) && currentGridP2[4] < currentMoveP1) {
-							currentGridP1[0] = currentMoveP1;
+						if (getItem("p1") != 0 && currentGridP2[4] < currentMoveP1) {
+							//if (takeItem("p1", currentMoveP1) && currentGridP2[4] < currentMoveP1) {
+							currentGridP1[4] = currentMoveP1;
 							if (f5.classList != "tileClickedP1") {
 								f5.classList.add("tileClickedP1");
 							}
@@ -351,8 +354,9 @@ function clickTile(tile) {
 							f6.classList.add("tileClickedP1");
 						}
 					} else {
-						if (takeItem("p1", currentMoveP1) && currentGridP2[5] < currentMoveP1) {
-							currentGridP1[0] = currentMoveP1;
+						if (getItem("p1") != 0 && currentGridP2[5] < currentMoveP1) {
+							//if (takeItem("p1", currentMoveP1) && currentGridP2[5] < currentMoveP1) {
+							currentGridP1[5] = currentMoveP1;
 							if (f6.classList != "tileClickedP1") {
 								f6.classList.add("tileClickedP1");
 							}
@@ -369,7 +373,9 @@ function clickTile(tile) {
 							f7.classList.add("tileClickedP1");
 						}
 					} else {
-						if (takeItem("p1", currentMoveP1) && currentGridP2[6] < currentMoveP1) {
+						if (getItem("p1") != 0 && currentGridP2[6] < currentMoveP1) {
+							//if (takeItem("p1", currentMoveP1) && currentGridP2[6] < currentMoveP1) {
+							currentGridP1[6] = currentMoveP1;
 							if (f7.classList != "tileClickedP1") {
 								f7.classList.add("tileClickedP1");
 							}
@@ -386,8 +392,9 @@ function clickTile(tile) {
 							f8.classList.add("tileClickedP1");
 						}
 					} else {
-						if (takeItem("p1", currentMoveP1) && currentGridP2[7] < currentMoveP1) {
-							currentGridP1[0] = currentMoveP1;
+						if (getItem("p1") != 0 && currentGridP2[7] < currentMoveP1) {
+							//if (takeItem("p1", currentMoveP1) && currentGridP2[7] < currentMoveP1) {
+							currentGridP1[7] = currentMoveP1;
 							if (f8.classList != "tileClickedP1") {
 								f8.classList.add("tileClickedP1");
 							}
@@ -404,8 +411,9 @@ function clickTile(tile) {
 							f9.classList.add("tileClickedP1");
 						}
 					} else {
-						if (takeItem("p1", currentMoveP1) && currentGridP2[8] < currentMoveP1) {
-							currentGridP1[0] = currentMoveP1;
+						if (getItem("p1") != 0 && currentGridP2[8] < currentMoveP1) {
+							//if (takeItem("p1", currentMoveP1) && currentGridP2[8] < currentMoveP1) {
+							currentGridP1[8] = currentMoveP1;
 							if (f9.classList != "tileClickedP1") {
 								f9.classList.add("tileClickedP1");
 							}
@@ -421,6 +429,7 @@ function clickTile(tile) {
 			//Turn for player 2
 			statusBarP2.classList.add("hide"); //animating statusbars
 			statusBarP1.classList.remove("hide");
+
 			switch (tile) {
 				case "f1":
 					if (gameMode == "nor") {
@@ -429,10 +438,12 @@ function clickTile(tile) {
 							f1.classList.add("tileClickedP2");
 						}
 					} else {
-						currentGridP2[0] = currentMoveP2;
-						takeItem("p2", currentMoveP2);
-						if (f1.classList != "tileClickedP2") {
-							f1.classList.add("tileClickedP2");
+						if (getItem("p2") != 0 && currentGridP1[0] < currentMoveP2) {
+							//takeItem("p2", currentMoveP2);
+							currentGridP2[0] = currentMoveP2;
+							if (f1.classList != "tileClickedP2") {
+								f1.classList.add("tileClickedP2");
+							}
 						}
 					}
 					break;
@@ -445,7 +456,7 @@ function clickTile(tile) {
 						}
 					} else {
 						currentGridP2[0] = currentMoveP2;
-						takeItem("p2", currentMoveP2);
+						//takeItem("p2", currentMoveP2);
 						if (f2.classList != "tileClickedP2") {
 							f2.classList.add("tileClickedP2");
 						}
