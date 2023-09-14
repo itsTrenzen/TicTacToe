@@ -3,12 +3,12 @@ let gameMode = "nor"; //either normal (nor) or advanced (adv)
 let counter = 0; //counting all made clicked fields
 //Player
 let player = {
-    "name": "",
-    "id": "",
-    "inventory": [{"i1": [1,1]}, {"i2": [2,2]}, {"i3": [3,3]}]
+	name: "",
+	id: "",
+	inventory: [{ i1: [1, 1] }, { i2: [2, 2] }, { i3: [3, 3] }],
 };
-let player1 = new player;
-let player2 = new player;
+let player1 = player;
+let player2 = player;
 //let player1 = [3, 3, 2, 2, 1, 1]; //inventory of player 1 for advanced game mode
 //let player2 = [3, 3, 2, 2, 1, 1]; //inventory of player 2 for advanced game mode
 let currentMoveP1 = 1; //current selected item from the moves inventory
@@ -137,7 +137,7 @@ function setMove(p, n) {
 	}
 }
 //function takes item from player
-function takeItem(p, item) {
+/*function takeItem(p, item) {
 	if (p === "p1") {
 		//for player 1
 		for (let index = 0; index < player1.length; index++) {
@@ -156,6 +156,83 @@ function takeItem(p, item) {
 			}
 		}
 		return false;
+	}
+}*/
+
+//function takes item from player and returns it
+function getItem(p, item) {
+	if (p != null && item != null) {
+		if (p === "p1") {
+			//player 1
+			switch (currentMoveP1) {
+				case 1:
+					if (player1.inventory.i1[0] == 1) {
+						//Checks for items in array
+						player1.inventory.i1[0] = 0;
+						return 1;
+					} else if (player1.inventory.i1[1] == 1) {
+						player1.inventory.i1[1] = 0;
+						return 1;
+					}
+					break;
+				case 2:
+					if (player1.inventory.i2[0] == 2) {
+						//Checks for items in array
+						player1.inventory.i2[0] = 0;
+						return 2;
+					} else if (player1.inventory.i1[1] == 2) {
+						player1.inventory.i2[1] = 0;
+						return 2;
+					}
+					break;
+				case 3:
+					if (player1.inventory.i3[0] == 3) {
+						//Checks for items in array
+						player1.inventory.i3[0] = 0;
+						return 3;
+					} else if (player1.inventory.i3[1] == 3) {
+						player1.inventory.i3[1] = 0;
+						return 3;
+					}
+					break;
+			}
+			return 0;
+		} else {
+			//player 2
+			switch (currentMoveP2) {
+				case 1:
+					if (player2.inventory.i1[0] == 1) {
+						//Checks for items in array
+						player2.inventory.i1[0] = 0;
+						return 1;
+					} else if (player1.inventory.i1[1] == 1) {
+						player2.inventory.i1[1] = 0;
+						return 1;
+					}
+					break;
+				case 2:
+					if (player2.inventory.i2[0] == 2) {
+						//Checks for items in array
+						player2.inventory.i2[0] = 0;
+						return 2;
+					} else if (player2.inventory.i2[1] == 2) {
+						player2.inventory.i2[1] = 0;
+						return 2;
+					}
+					break;
+				case 3:
+					if (player2.inventory.i3[0] == 3) {
+						//Checks for items in array
+						player2.inventory.i3[0] = 0;
+						return 3;
+					} else if (player2.inventory.i3[1] == 3) {
+						player2.inventory.i3[1] = 0;
+						return 3;
+					}
+					break;
+			}
+			return 0;
+		}
 	}
 }
 
@@ -183,6 +260,7 @@ function clickTile(tile) {
 						if (takeItem("p1", currentMoveP1) && currentGridP2[0] < currentMoveP1) {
 							//check for item availability
 							currentGridP1[0] = currentMoveP1;
+
 							if (f1.classList != "tileClickedP1") {
 								//coloring tile
 								f1.classList.add("tileClickedP1"); //
