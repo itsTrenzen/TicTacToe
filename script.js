@@ -50,6 +50,9 @@ let p2Item2_1 = document.querySelector(".p2Item2_1");
 let p2Item2_2 = document.querySelector(".p2Item2_2");
 let p2Item1_1 = document.querySelector(".p2Item1_1");
 let p2Item1_2 = document.querySelector(".p2Item1_2");
+//These itembuttons shall be disabled after clicking a field
+let itemToDisableP1 = p1Item1_1;
+let itemToDisableP2 = p2Item1_1;
 
 let allItems = document.querySelectorAll(".item");
 setMode("nor");
@@ -78,32 +81,38 @@ function setMode(mode) {
 
 function setMove(p, n) {
 	//p for player and n for the item selected
-	if (p == "p1") {
+	if (p === "p1") {
 		removeClassFromAllElements("setP1move");
 		switch (n) {
 			case 3.1:
 				p1Item3_1.classList.add("setP1move");
 				currentMoveP1 = 3;
+				itemToDisableP1 = p1Item3_1;
 				break;
 			case 3.2:
 				p1Item3_2.classList.add("setP1move");
 				currentMoveP1 = 3;
+				itemToDisableP1 = p1Item3_2;
 				break;
 			case 2.1:
 				p1Item2_1.classList.add("setP1move");
 				currentMoveP1 = 2;
+				itemToDisableP1 = p1Item2_1;
 				break;
 			case 2.2:
 				p1Item2_2.classList.add("setP1move");
 				currentMoveP1 = 2;
+				itemToDisableP1 = p1Item2_2;
 				break;
 			case 1.1:
 				p1Item1_1.classList.add("setP1move");
 				currentMoveP1 = 1;
+				itemToDisableP1 = p1Item1_1;
 				break;
 			case 1.2:
 				p1Item1_2.classList.add("setP1move");
 				currentMoveP1 = 1;
+				itemToDisableP1 = p1Item1_2;
 				break;
 			default:
 				break;
@@ -114,26 +123,32 @@ function setMove(p, n) {
 			case 3.1:
 				p2Item3_1.classList.add("setP2move");
 				currentMoveP2 = 3;
+				itemToDisableP2 = p2Item3_1;
 				break;
 			case 3.2:
 				p2Item3_2.classList.add("setP2move");
 				currentMoveP2 = 3;
+				itemToDisableP2 = p2Item3_2;
 				break;
 			case 2.1:
 				p2Item2_1.classList.add("setP2move");
 				currentMoveP2 = 2;
+				itemToDisableP2 = p1Item2_1;
 				break;
 			case 2.2:
 				p2Item2_2.classList.add("setP2move");
 				currentMoveP2 = 2;
+				itemToDisableP2 = p2Item2_2;
 				break;
 			case 1.1:
 				p2Item1_1.classList.add("setP2move");
 				currentMoveP2 = 1;
+				itemToDisableP2 = p2Item1_1;
 				break;
 			case 1.2:
 				p2Item1_2.classList.add("setP2move");
 				currentMoveP2 = 1;
+				itemToDisableP2 = p2Item1_2;
 				break;
 			default:
 				break;
@@ -261,9 +276,9 @@ function clickTile(tile) {
 					} else {
 						//advanced mode
 						if (getItem("p1") != 0 && currentGridP2[0] < currentMoveP1) {
-							//if (takeItem("p1", currentMoveP1) && currentGridP2[0] < currentMoveP1) {
 							//check for item availability
 							currentGridP1[0] = currentMoveP1;
+							itemToDisableP1.classList.add("setDisabled");
 							//coloring tile
 							if (f1.classList != "tileClickedP1") {
 								f1.classList.add("tileClickedP1"); //
@@ -289,6 +304,7 @@ function clickTile(tile) {
 						if (getItem("p1") != 0 && currentGridP2[1] < currentMoveP1) {
 							//if (takeItem("p1", currentMoveP1) && currentGridP2[1] < currentMoveP1) {
 							currentGridP1[1] = currentMoveP1;
+							itemToDisableP1.classList.add("setDisabled");
 							if (f2.classList != "tileClickedP1") {
 								f2.classList.add("tileClickedP1");
 							}
@@ -312,6 +328,7 @@ function clickTile(tile) {
 						if (getItem("p1") != 0 && currentGridP2[2] < currentMoveP1) {
 							//if (takeItem("p1", currentMoveP1) && currentGridP2[2] < currentMoveP1) {
 							currentGridP1[2] = currentMoveP1;
+							itemToDisableP1.classList.add("setDisabled");
 							if (f3.classList != "tileClickedP1") {
 								f3.classList.add("tileClickedP1");
 							}
@@ -335,6 +352,7 @@ function clickTile(tile) {
 						if (getItem("p1") != 0 && currentGridP2[3] < currentMoveP1) {
 							//if (takeItem("p1", currentMoveP1) && currentGridP2[3] < currentMoveP1) {
 							currentGridP1[3] = currentMoveP1;
+							itemToDisableP1.classList.add("setDisabled");
 							if (f4.classList != "tileClickedP1") {
 								f4.classList.add("tileClickedP1");
 							}
@@ -358,6 +376,7 @@ function clickTile(tile) {
 						if (getItem("p1") != 0 && currentGridP2[4] < currentMoveP1) {
 							//if (takeItem("p1", currentMoveP1) && currentGridP2[4] < currentMoveP1) {
 							currentGridP1[4] = currentMoveP1;
+							itemToDisableP1.classList.add("setDisabled");
 							if (f5.classList != "tileClickedP1") {
 								f5.classList.add("tileClickedP1");
 							}
@@ -381,6 +400,7 @@ function clickTile(tile) {
 						if (getItem("p1") != 0 && currentGridP2[5] < currentMoveP1) {
 							//if (takeItem("p1", currentMoveP1) && currentGridP2[5] < currentMoveP1) {
 							currentGridP1[5] = currentMoveP1;
+							itemToDisableP1.classList.add("setDisabled");
 							if (f6.classList != "tileClickedP1") {
 								f6.classList.add("tileClickedP1");
 							}
@@ -404,6 +424,7 @@ function clickTile(tile) {
 						if (getItem("p1") != 0 && currentGridP2[6] < currentMoveP1) {
 							//if (takeItem("p1", currentMoveP1) && currentGridP2[6] < currentMoveP1) {
 							currentGridP1[6] = currentMoveP1;
+							itemToDisableP1.classList.add("setDisabled");
 							if (f7.classList != "tileClickedP1") {
 								f7.classList.add("tileClickedP1");
 							}
@@ -427,6 +448,7 @@ function clickTile(tile) {
 						if (getItem("p1") != 0 && currentGridP2[7] < currentMoveP1) {
 							//if (takeItem("p1", currentMoveP1) && currentGridP2[7] < currentMoveP1) {
 							currentGridP1[7] = currentMoveP1;
+							itemToDisableP1.classList.add("setDisabled");
 							if (f8.classList != "tileClickedP1") {
 								f8.classList.add("tileClickedP1");
 							}
@@ -450,6 +472,7 @@ function clickTile(tile) {
 						if (getItem("p1") != 0 && currentGridP2[8] < currentMoveP1) {
 							//if (takeItem("p1", currentMoveP1) && currentGridP2[8] < currentMoveP1) {
 							currentGridP1[8] = currentMoveP1;
+							itemToDisableP1.classList.add("setDisabled");
 							if (f9.classList != "tileClickedP1") {
 								f9.classList.add("tileClickedP1");
 							}
@@ -481,6 +504,7 @@ function clickTile(tile) {
 						if (getItem("p2") != 0 && currentGridP1[0] < currentMoveP2) {
 							//takeItem("p2", currentMoveP2);
 							currentGridP2[0] = currentMoveP2;
+							itemToDisableP2.classList.add("setDisabled");
 							if (f1.classList != "tileClickedP2") {
 								f1.classList.add("tileClickedP2");
 							}
@@ -504,6 +528,7 @@ function clickTile(tile) {
 					} else {
 						if (getItem("p2") != 0 && currentGridP1[1] < currentMoveP2) {
 							currentGridP2[1] = currentMoveP2;
+							itemToDisableP2.classList.add("setDisabled");
 							//takeItem("p2", currentMoveP2);
 							if (f2.classList != "tileClickedP2") {
 								f2.classList.add("tileClickedP2");
@@ -527,6 +552,7 @@ function clickTile(tile) {
 					} else {
 						if (getItem("p2") != 0 && currentGridP1[2] < currentMoveP2) {
 							currentGridP2[2] = currentMoveP2;
+							itemToDisableP2.classList.add("setDisabled");
 							//takeItem("p2", currentMoveP2);
 							if (f3.classList != "tileClickedP2") {
 								f3.classList.add("tileClickedP2");
@@ -550,6 +576,7 @@ function clickTile(tile) {
 					} else {
 						if (getItem("p2") != 0 && currentGridP1[3] < currentMoveP2) {
 							currentGridP2[3] = currentMoveP2;
+							itemToDisableP2.classList.add("setDisabled");
 							//takeItem("p2", currentMoveP2);
 							if (f4.classList != "tileClickedP2") {
 								f4.classList.add("tileClickedP2");
@@ -573,6 +600,7 @@ function clickTile(tile) {
 					} else {
 						if (getItem("p2") != 0 && currentGridP1[4] < currentMoveP2) {
 							currentGridP2[4] = currentMoveP2;
+							itemToDisableP2.classList.add("setDisabled");
 							//takeItem("p2", currentMoveP2);
 							if (f5.classList != "tileClickedP2") {
 								f5.classList.add("tileClickedP2");
@@ -596,6 +624,7 @@ function clickTile(tile) {
 					} else {
 						if (getItem("p2") != 0 && currentGridP1[5] < currentMoveP2) {
 							currentGridP2[5] = currentMoveP2;
+							itemToDisableP2.classList.add("setDisabled");
 							//takeItem("p2", currentMoveP2);
 							if (f6.classList != "tileClickedP2") {
 								f6.classList.add("tileClickedP2");
@@ -619,6 +648,7 @@ function clickTile(tile) {
 					} else {
 						if (getItem("p2") != 0 && currentGridP1[6] < currentMoveP2) {
 							currentGridP2[6] = currentMoveP2;
+							itemToDisableP2.classList.add("setDisabled");
 							//takeItem("p2", currentMoveP2);
 							if (f7.classList != "tileClickedP2") {
 								f7.classList.add("tileClickedP2");
@@ -642,6 +672,7 @@ function clickTile(tile) {
 					} else {
 						if (getItem("p2") != 0 && currentGridP1[7] < currentMoveP2) {
 							currentGridP2[7] = currentMoveP2;
+							itemToDisableP2.classList.add("setDisabled");
 							//takeItem("p2", currentMoveP2);
 							if (f8.classList != "tileClickedP2") {
 								f8.classList.add("tileClickedP2");
@@ -665,6 +696,7 @@ function clickTile(tile) {
 					} else {
 						if (getItem("p2") != 0 && currentGridP1[8] < currentMoveP2) {
 							currentGridP2[0] = currentMoveP2;
+							itemToDisableP2.classList.add("setDisabled");
 							//takeItem("p2", currentMoveP2);
 							if (f9.classList != "tileClickedP2") {
 								f9.classList.add("tileClickedP2");
@@ -897,6 +929,7 @@ function reset() {
 
 	removeClassFromAllElements("setP1move");
 	removeClassFromAllElements("setP2move");
+	removeClassFromAllElements("setDisabled");
 	removeClassFromAllElements("tileClickedP1");
 	removeClassFromAllElements("tileClickedP2");
 }
