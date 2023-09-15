@@ -269,8 +269,8 @@ function clickTile(tile) {
 								f1.classList.add("tileClickedP1"); //
 							}
 						} else {
-							//item could not be used
-							if (currentGridP2[0] < currentMoveP1) {
+							//item could not be used --> decision which error happened
+							if (currentGridP2[0] >= currentMoveP1) {
 								alert("Can not take this field!");
 							} else {
 								alert("Item has already been used!");
@@ -293,7 +293,7 @@ function clickTile(tile) {
 								f2.classList.add("tileClickedP1");
 							}
 						} else {
-							if (currentGridP2[1] < currentMoveP1) {
+							if (currentGridP2[1] >= currentMoveP1) {
 								alert("Can not take this field!");
 							} else {
 								alert("Item has already been used!");
@@ -316,7 +316,7 @@ function clickTile(tile) {
 								f3.classList.add("tileClickedP1");
 							}
 						} else {
-							if (currentGridP2[2] < currentMoveP1) {
+							if (currentGridP2[2] >= currentMoveP1) {
 								alert("Can not take this field!");
 							} else {
 								alert("Item has already been used!");
@@ -339,7 +339,7 @@ function clickTile(tile) {
 								f4.classList.add("tileClickedP1");
 							}
 						} else {
-							if (currentGridP2[3] < currentMoveP1) {
+							if (currentGridP2[3] >= currentMoveP1) {
 								alert("Can not take this field!");
 							} else {
 								alert("Item has already been used!");
@@ -362,7 +362,7 @@ function clickTile(tile) {
 								f5.classList.add("tileClickedP1");
 							}
 						} else {
-							if (currentGridP2[4] < currentMoveP1) {
+							if (currentGridP2[4] >= currentMoveP1) {
 								alert("Can not take this field!");
 							} else {
 								alert("Item has already been used!");
@@ -385,7 +385,7 @@ function clickTile(tile) {
 								f6.classList.add("tileClickedP1");
 							}
 						} else {
-							if (currentGridP2[5] < currentMoveP1) {
+							if (currentGridP2[5] >= currentMoveP1) {
 								alert("Can not take this field!");
 							} else {
 								alert("Item has already been used!");
@@ -408,7 +408,7 @@ function clickTile(tile) {
 								f7.classList.add("tileClickedP1");
 							}
 						} else {
-							if (currentGridP2[6] < currentMoveP1) {
+							if (currentGridP2[6] >= currentMoveP1) {
 								alert("Can not take this field!");
 							} else {
 								alert("Item has already been used!");
@@ -431,7 +431,7 @@ function clickTile(tile) {
 								f8.classList.add("tileClickedP1");
 							}
 						} else {
-							if (currentGridP2[7] < currentMoveP1) {
+							if (currentGridP2[7] >= currentMoveP1) {
 								alert("Can not take this field!");
 							} else {
 								alert("Item has already been used!");
@@ -454,7 +454,7 @@ function clickTile(tile) {
 								f9.classList.add("tileClickedP1");
 							}
 						} else {
-							if (currentGridP2[8] < currentMoveP1) {
+							if (currentGridP2[8] >= currentMoveP1) {
 								alert("Can not take this field!");
 							} else {
 								alert("Item has already been used!");
@@ -485,7 +485,7 @@ function clickTile(tile) {
 								f1.classList.add("tileClickedP2");
 							}
 						} else {
-							if (currentGridP1[0] < currentMoveP2) {
+							if (currentGridP1[0] >= currentMoveP2) {
 								alert("Can not take this field!");
 							} else {
 								alert("Item has already been used!");
@@ -509,7 +509,7 @@ function clickTile(tile) {
 								f2.classList.add("tileClickedP2");
 							}
 						} else {
-							if (currentGridP1[1] < currentMoveP2) {
+							if (currentGridP1[1] >= currentMoveP2) {
 								alert("Can not take this field!");
 							} else {
 								alert("Item has already been used!");
@@ -532,7 +532,7 @@ function clickTile(tile) {
 								f3.classList.add("tileClickedP2");
 							}
 						} else {
-							if (currentGridP1[2] < currentMoveP2) {
+							if (currentGridP1[2] >= currentMoveP2) {
 								alert("Can not take this field!");
 							} else {
 								alert("Item has already been used!");
@@ -555,7 +555,7 @@ function clickTile(tile) {
 								f4.classList.add("tileClickedP2");
 							}
 						} else {
-							if (currentGridP1[3] < currentMoveP2) {
+							if (currentGridP1[3] >= currentMoveP2) {
 								alert("Can not take this field!");
 							} else {
 								alert("Item has already been used!");
@@ -578,7 +578,7 @@ function clickTile(tile) {
 								f5.classList.add("tileClickedP2");
 							}
 						} else {
-							if (currentGridP1[4] < currentMoveP2) {
+							if (currentGridP1[4] >= currentMoveP2) {
 								alert("Can not take this field!");
 							} else {
 								alert("Item has already been used!");
@@ -601,7 +601,7 @@ function clickTile(tile) {
 								f6.classList.add("tileClickedP2");
 							}
 						} else {
-							if (currentGridP1[5] < currentMoveP2) {
+							if (currentGridP1[5] >= currentMoveP2) {
 								alert("Can not take this field!");
 							} else {
 								alert("Item has already been used!");
@@ -624,7 +624,7 @@ function clickTile(tile) {
 								f7.classList.add("tileClickedP2");
 							}
 						} else {
-							if (currentGridP1[6] < currentMoveP2) {
+							if (currentGridP1[6] >= currentMoveP2) {
 								alert("Can not take this field!");
 							} else {
 								alert("Item has already been used!");
@@ -647,7 +647,7 @@ function clickTile(tile) {
 								f8.classList.add("tileClickedP2");
 							}
 						} else {
-							if (currentGridP1[7] < currentMoveP2) {
+							if (currentGridP1[7] >= currentMoveP2) {
 								alert("Can not take this field!");
 							} else {
 								alert("Item has already been used!");
@@ -670,7 +670,7 @@ function clickTile(tile) {
 								f9.classList.add("tileClickedP2");
 							}
 						} else {
-							if (currentGridP1[8] < currentMoveP2) {
+							if (currentGridP1[8] >= currentMoveP2) {
 								alert("Can not take this field!");
 							} else {
 								alert("Item has already been used!");
