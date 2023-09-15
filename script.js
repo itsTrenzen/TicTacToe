@@ -783,14 +783,13 @@ function checkWinNormalP1() {
 			check2 = 4;
 			check3 = 8;
 		} else if (i == 7) {
-			check1, check2, (check3 = 2), 4, 6;
 			check1 = 2;
 			check2 = 4;
 			check3 = 6;
 		}
 	}
 }
-function checkWinNormalP2(grid) {
+function checkWinNormalP2() {
 	let check1, check2, check3;
 
 	for (let i = 0; i <= 8; i++) {
@@ -834,12 +833,14 @@ function checkWinNormalP2(grid) {
 
 //win check algorithms for advanced mode
 function checkWinAdvP1() {
+	//row 1
 	let check1 = 1;
 	let check2 = 1;
 	let check3 = 1;
 
 	for (let i = 0; i <= 8; i++) {
-		if (currentGridP1[check1] != 0 && currentGridP1[check2] != 0 && currentGridP1[check3] != 0) {
+		//i stands for the varieties to win
+		if (currentGridP1[check1] > 0 && currentGridP1[check2] > 0 && currentGridP1[check3] > 0) {
 			return true;
 		} else if (i == 0) {
 			check1 = 0;
@@ -866,20 +867,25 @@ function checkWinAdvP1() {
 			check2 = 5;
 			check3 = 8;
 		} else if (i == 6) {
-			check1, check2, (check3 = 0), 4, 8;
+			check1 = 0;
+			check2 = 4;
+			check3 = 8;
 		} else if (i == 7) {
-			check1, check2, (check3 = 2), 4, 6;
+			check1 = 2;
+			check2 = 4;
+			check3 = 6;
 		}
 	}
 }
 
 function checkWinAdvP2() {
+	//rows
 	let check1 = 1;
 	let check2 = 1;
 	let check3 = 1;
 
 	for (let i = 0; i <= 8; i++) {
-		if (currentGridP2[check1] != 0 && currentGridP2[check2] != 0 && currentGridP2[check3] != 0) {
+		if (currentGridP2[check1] > 0 && currentGridP2[check2] > 0 && currentGridP2[check3] > 0) {
 			return true;
 		} else if (i == 0) {
 			check1 = 0;
@@ -906,9 +912,13 @@ function checkWinAdvP2() {
 			check2 = 5;
 			check3 = 8;
 		} else if (i == 6) {
-			check1, check2, (check3 = 0), 4, 8;
+			check1 = 0;
+			check2 = 4;
+			check3 = 8;
 		} else if (i == 7) {
-			check1, check2, (check3 = 2), 4, 6;
+			check1 = 2;
+			check2 = 4;
+			check3 = 6;
 		}
 	}
 }
