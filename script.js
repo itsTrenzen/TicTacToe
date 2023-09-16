@@ -2,7 +2,7 @@ let gameActive = true;
 let gameMode = "nor"; //either normal (nor) or advanced (adv)
 let counter = 0; //counting all made clicked fields
 //Player
-let player = {
+let player1 = {
 	name: "",
 	id: "",
 	inventory: {
@@ -11,8 +11,15 @@ let player = {
 		i3: [3, 3],
 	},
 };
-let player1 = player;
-let player2 = player;
+let player2 = {
+	name: "",
+	id: "",
+	inventory: {
+		i1: [1, 1],
+		i2: [2, 2],
+		i3: [3, 3],
+	},
+};
 //let player1 = [3, 3, 2, 2, 1, 1]; //inventory of player 1 for advanced game mode
 //let player2 = [3, 3, 2, 2, 1, 1]; //inventory of player 2 for advanced game mode
 let currentMoveP1 = 1; //current selected item from the moves inventory
@@ -752,7 +759,7 @@ function checkWinNormalP1() {
 	let check1, check2, check3;
 
 	for (let i = 0; i <= 8; i++) {
-		if (currentGridP1[check1] && currentGridP1[check2] && currentGridP1[check3]) {
+		if (currentGridP1[check1] > 0 && currentGridP1[check2] > 0 && currentGridP1[check3] > 0) {
 			return true;
 		} else if (i == 0) {
 			check1 = 0;
@@ -793,7 +800,7 @@ function checkWinNormalP2() {
 	let check1, check2, check3;
 
 	for (let i = 0; i <= 8; i++) {
-		if (currentGridP2[check1] && currentGridP2[check2] && currentGridP2[check3]) {
+		if (currentGridP2[check1] > 0 && currentGridP2[check2] > 0 && currentGridP2[check3] > 0) {
 			return true;
 		} else if (i == 0) {
 			check1 = 0;
@@ -834,9 +841,9 @@ function checkWinNormalP2() {
 //win check algorithms for advanced mode
 function checkWinAdvP1() {
 	//row 1
-	let check1 = 1;
-	let check2 = 1;
-	let check3 = 1;
+	let check1;
+	let check2;
+	let check3;
 
 	for (let i = 0; i <= 8; i++) {
 		//i stands for the varieties to win
@@ -927,7 +934,7 @@ function reset() {
 	gameActive = true;
 	isTurn = true;
 	counter = 0;
-	
+
 	if (statusBarP2.classList != "hide") statusBarP2.classList.add("hide");
 	statusBarP1.classList.remove("hide");
 
@@ -935,8 +942,24 @@ function reset() {
 
 	currentGridP2 = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 
-	player1 = player;
-	player2 = player;
+	player1 = {
+		name: "",
+		id: "",
+		inventory: {
+			i1: [1, 1],
+			i2: [2, 2],
+			i3: [3, 3],
+		},
+	};
+	player2 = {
+		name: "",
+		id: "",
+		inventory: {
+			i1: [1, 1],
+			i2: [2, 2],
+			i3: [3, 3],
+		},
+	};
 
 	removeClassFromAllElements("setP1move");
 	removeClassFromAllElements("setP2move");
