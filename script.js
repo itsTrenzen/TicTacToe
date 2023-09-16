@@ -927,6 +927,7 @@ function reset() {
 	gameActive = true;
 	isTurn = true;
 	counter = 0;
+	
 	if (statusBarP2.classList != "hide") statusBarP2.classList.add("hide");
 	statusBarP1.classList.remove("hide");
 
@@ -943,7 +944,6 @@ function reset() {
 	removeClassFromAllElements("tileClickedP1");
 	removeClassFromAllElements("tileClickedP2");
 }
-
 // Remove a class from all elements
 function removeClassFromAllElements(className) {
 	const elements = document.querySelectorAll("." + className);
