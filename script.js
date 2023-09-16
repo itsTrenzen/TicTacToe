@@ -2,8 +2,26 @@ let gameActive = true;
 let gameMode = "nor"; //either normal (nor) or advanced (adv)
 let counter = 0; //counting all made clicked fields
 //Player
-let player1 = [3, 3, 2, 2, 1, 1]; //inventory of player 1 for advanced game mode
-let player2 = [3, 3, 2, 2, 1, 1]; //inventory of player 2 for advanced game mode
+let player1 = {
+	name: "",
+	id: "",
+	inventory: {
+		i1: [1, 1],
+		i2: [2, 2],
+		i3: [3, 3],
+	},
+};
+let player2 = {
+	name: "",
+	id: "",
+	inventory: {
+		i1: [1, 1],
+		i2: [2, 2],
+		i3: [3, 3],
+	},
+};
+//let player1 = [3, 3, 2, 2, 1, 1]; //inventory of player 1 for advanced game mode
+//let player2 = [3, 3, 2, 2, 1, 1]; //inventory of player 2 for advanced game mode
 let currentMoveP1 = 1; //current selected item from the moves inventory
 let currentMoveP2 = 1;
 let isTurn = true;
@@ -20,7 +38,6 @@ let f8 = document.getElementById("f8");
 let f9 = document.getElementById("f9");
 //grids
 let currentGridP1 = [0, 0, 0, 0, 0, 0, 0, 0, 0];
-
 let currentGridP2 = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 //status bar
 let statusBarP1 = document.querySelector(".statusBarP1");
@@ -40,6 +57,9 @@ let p2Item2_1 = document.querySelector(".p2Item2_1");
 let p2Item2_2 = document.querySelector(".p2Item2_2");
 let p2Item1_1 = document.querySelector(".p2Item1_1");
 let p2Item1_2 = document.querySelector(".p2Item1_2");
+//These itembuttons shall be disabled after clicking a field
+let itemToDisableP1 = p1Item1_1;
+let itemToDisableP2 = p2Item1_1;
 
 let allItems = document.querySelectorAll(".item");
 setMode("nor");
@@ -68,32 +88,38 @@ function setMode(mode) {
 
 function setMove(p, n) {
 	//p for player and n for the item selected
-	if (p == "p1") {
+	if (p === "p1") {
 		removeClassFromAllElements("setP1move");
 		switch (n) {
 			case 3.1:
 				p1Item3_1.classList.add("setP1move");
 				currentMoveP1 = 3;
+				itemToDisableP1 = p1Item3_1;
 				break;
 			case 3.2:
 				p1Item3_2.classList.add("setP1move");
 				currentMoveP1 = 3;
+				itemToDisableP1 = p1Item3_2;
 				break;
 			case 2.1:
 				p1Item2_1.classList.add("setP1move");
 				currentMoveP1 = 2;
+				itemToDisableP1 = p1Item2_1;
 				break;
 			case 2.2:
 				p1Item2_2.classList.add("setP1move");
 				currentMoveP1 = 2;
+				itemToDisableP1 = p1Item2_2;
 				break;
 			case 1.1:
 				p1Item1_1.classList.add("setP1move");
 				currentMoveP1 = 1;
+				itemToDisableP1 = p1Item1_1;
 				break;
 			case 1.2:
 				p1Item1_2.classList.add("setP1move");
 				currentMoveP1 = 1;
+				itemToDisableP1 = p1Item1_2;
 				break;
 			default:
 				break;
@@ -104,26 +130,32 @@ function setMove(p, n) {
 			case 3.1:
 				p2Item3_1.classList.add("setP2move");
 				currentMoveP2 = 3;
+				itemToDisableP2 = p2Item3_1;
 				break;
 			case 3.2:
 				p2Item3_2.classList.add("setP2move");
 				currentMoveP2 = 3;
+				itemToDisableP2 = p2Item3_2;
 				break;
 			case 2.1:
 				p2Item2_1.classList.add("setP2move");
 				currentMoveP2 = 2;
+				itemToDisableP2 = p1Item2_1;
 				break;
 			case 2.2:
 				p2Item2_2.classList.add("setP2move");
 				currentMoveP2 = 2;
+				itemToDisableP2 = p2Item2_2;
 				break;
 			case 1.1:
 				p2Item1_1.classList.add("setP2move");
 				currentMoveP2 = 1;
+				itemToDisableP2 = p2Item1_1;
 				break;
 			case 1.2:
 				p2Item1_2.classList.add("setP2move");
 				currentMoveP2 = 1;
+				itemToDisableP2 = p2Item1_2;
 				break;
 			default:
 				break;
@@ -131,7 +163,7 @@ function setMove(p, n) {
 	}
 }
 //function takes item from player
-function takeItem(p, item) {
+/*function takeItem(p, item) {
 	if (p === "p1") {
 		//for player 1
 		for (let index = 0; index < player1.length; index++) {
@@ -151,6 +183,83 @@ function takeItem(p, item) {
 		}
 		return false;
 	}
+}*/
+
+//function takes item from player and returns it
+function getItem(p) {
+	if (p != null) {
+		if (p === "p1") {
+			//player 1
+			switch (currentMoveP1) {
+				case 1:
+					if (player1.inventory.i1[0] == 1) {
+						//Checks for items in array
+						player1.inventory.i1[0] = 0;
+						return 1;
+					} else if (player1.inventory.i1[1] == 1) {
+						player1.inventory.i1[1] = 0;
+						return 1;
+					}
+					break;
+				case 2:
+					if (player1.inventory.i2[0] == 2) {
+						//Checks for items in array
+						player1.inventory.i2[0] = 0;
+						return 2;
+					} else if (player1.inventory.i1[1] == 2) {
+						player1.inventory.i2[1] = 0;
+						return 2;
+					}
+					break;
+				case 3:
+					if (player1.inventory.i3[0] == 3) {
+						//Checks for items in array
+						player1.inventory.i3[0] = 0;
+						return 3;
+					} else if (player1.inventory.i3[1] == 3) {
+						player1.inventory.i3[1] = 0;
+						return 3;
+					}
+					break;
+			}
+			return 0;
+		} else {
+			//player 2
+			switch (currentMoveP2) {
+				case 1:
+					if (player2.inventory.i1[0] == 1) {
+						//Checks for items in array
+						player2.inventory.i1[0] = 0;
+						return 1;
+					} else if (player1.inventory.i1[1] == 1) {
+						player2.inventory.i1[1] = 0;
+						return 1;
+					}
+					break;
+				case 2:
+					if (player2.inventory.i2[0] == 2) {
+						//Checks for items in array
+						player2.inventory.i2[0] = 0;
+						return 2;
+					} else if (player2.inventory.i2[1] == 2) {
+						player2.inventory.i2[1] = 0;
+						return 2;
+					}
+					break;
+				case 3:
+					if (player2.inventory.i3[0] == 3) {
+						//Checks for items in array
+						player2.inventory.i3[0] = 0;
+						return 3;
+					} else if (player2.inventory.i3[1] == 3) {
+						player2.inventory.i3[1] = 0;
+						return 3;
+					}
+					break;
+			}
+			return 0;
+		}
+	}
 }
 
 //firstly animate the clicked tile and then log it into the system
@@ -169,21 +278,25 @@ function clickTile(tile) {
 						//checking the gamemode
 						currentGridP1[0] = 1; //normally reserving the field
 						if (f1.classList != "tileClickedP1") {
-							//coloring tile
-							f1.classList.add("tileClickedP1"); //
+							f1.classList.add("tileClickedP1"); //coloring tile
 						}
 					} else {
 						//advanced mode
-						if (takeItem("p1", currentMoveP1) && currentGridP2[0] < currentMoveP1) {
+						if (getItem("p1") != 0 && currentGridP2[0] < currentMoveP1) {
 							//check for item availability
 							currentGridP1[0] = currentMoveP1;
+							itemToDisableP1.classList.add("setDisabled");
+							//coloring tile
 							if (f1.classList != "tileClickedP1") {
-								//coloring tile
 								f1.classList.add("tileClickedP1"); //
 							}
 						} else {
-							//item could not be used
-							alert("Item has already been used!");
+							//item could not be used --> decision which error happened
+							if (currentGridP2[0] >= currentMoveP1) {
+								alert("Can not take this field!");
+							} else {
+								alert("Item has already been used!");
+							}
 							return;
 						}
 					}
@@ -195,13 +308,19 @@ function clickTile(tile) {
 							f2.classList.add("tileClickedP1");
 						}
 					} else {
-						if (takeItem("p1", currentMoveP1) && currentGridP2[1] < currentMoveP1) {
-							currentGridP1[0] = currentMoveP1;
+						if (getItem("p1") != 0 && currentGridP2[1] < currentMoveP1) {
+							//if (takeItem("p1", currentMoveP1) && currentGridP2[1] < currentMoveP1) {
+							currentGridP1[1] = currentMoveP1;
+							itemToDisableP1.classList.add("setDisabled");
 							if (f2.classList != "tileClickedP1") {
 								f2.classList.add("tileClickedP1");
 							}
 						} else {
-							alert("Item has already been used!");
+							if (currentGridP2[1] >= currentMoveP1) {
+								alert("Can not take this field!");
+							} else {
+								alert("Item has already been used!");
+							}
 							return;
 						}
 					}
@@ -213,13 +332,19 @@ function clickTile(tile) {
 							f3.classList.add("tileClickedP1");
 						}
 					} else {
-						if (takeItem("p1", currentMoveP1) && currentGridP2[2] < currentMoveP1) {
-							currentGridP1[0] = currentMoveP1;
+						if (getItem("p1") != 0 && currentGridP2[2] < currentMoveP1) {
+							//if (takeItem("p1", currentMoveP1) && currentGridP2[2] < currentMoveP1) {
+							currentGridP1[2] = currentMoveP1;
+							itemToDisableP1.classList.add("setDisabled");
 							if (f3.classList != "tileClickedP1") {
 								f3.classList.add("tileClickedP1");
 							}
 						} else {
-							alert("Item has already been used!");
+							if (currentGridP2[2] >= currentMoveP1) {
+								alert("Can not take this field!");
+							} else {
+								alert("Item has already been used!");
+							}
 							return;
 						}
 					}
@@ -231,13 +356,19 @@ function clickTile(tile) {
 							f4.classList.add("tileClickedP1");
 						}
 					} else {
-						if (takeItem("p1", currentMoveP1) && currentGridP2[3] < currentMoveP1) {
-							currentGridP1[0] = currentMoveP1;
+						if (getItem("p1") != 0 && currentGridP2[3] < currentMoveP1) {
+							//if (takeItem("p1", currentMoveP1) && currentGridP2[3] < currentMoveP1) {
+							currentGridP1[3] = currentMoveP1;
+							itemToDisableP1.classList.add("setDisabled");
 							if (f4.classList != "tileClickedP1") {
 								f4.classList.add("tileClickedP1");
 							}
 						} else {
-							alert("Item has already been used!");
+							if (currentGridP2[3] >= currentMoveP1) {
+								alert("Can not take this field!");
+							} else {
+								alert("Item has already been used!");
+							}
 							return;
 						}
 					}
@@ -249,13 +380,19 @@ function clickTile(tile) {
 							f5.classList.add("tileClickedP1");
 						}
 					} else {
-						if (takeItem("p1", currentMoveP1) && currentGridP2[4] < currentMoveP1) {
-							currentGridP1[0] = currentMoveP1;
+						if (getItem("p1") != 0 && currentGridP2[4] < currentMoveP1) {
+							//if (takeItem("p1", currentMoveP1) && currentGridP2[4] < currentMoveP1) {
+							currentGridP1[4] = currentMoveP1;
+							itemToDisableP1.classList.add("setDisabled");
 							if (f5.classList != "tileClickedP1") {
 								f5.classList.add("tileClickedP1");
 							}
 						} else {
-							alert("Item has already been used!");
+							if (currentGridP2[4] >= currentMoveP1) {
+								alert("Can not take this field!");
+							} else {
+								alert("Item has already been used!");
+							}
 							return;
 						}
 					}
@@ -267,13 +404,19 @@ function clickTile(tile) {
 							f6.classList.add("tileClickedP1");
 						}
 					} else {
-						if (takeItem("p1", currentMoveP1) && currentGridP2[5] < currentMoveP1) {
-							currentGridP1[0] = currentMoveP1;
+						if (getItem("p1") != 0 && currentGridP2[5] < currentMoveP1) {
+							//if (takeItem("p1", currentMoveP1) && currentGridP2[5] < currentMoveP1) {
+							currentGridP1[5] = currentMoveP1;
+							itemToDisableP1.classList.add("setDisabled");
 							if (f6.classList != "tileClickedP1") {
 								f6.classList.add("tileClickedP1");
 							}
 						} else {
-							alert("Item has already been used!");
+							if (currentGridP2[5] >= currentMoveP1) {
+								alert("Can not take this field!");
+							} else {
+								alert("Item has already been used!");
+							}
 							return;
 						}
 					}
@@ -285,12 +428,19 @@ function clickTile(tile) {
 							f7.classList.add("tileClickedP1");
 						}
 					} else {
-						if (takeItem("p1", currentMoveP1) && currentGridP2[6] < currentMoveP1) {
+						if (getItem("p1") != 0 && currentGridP2[6] < currentMoveP1) {
+							//if (takeItem("p1", currentMoveP1) && currentGridP2[6] < currentMoveP1) {
+							currentGridP1[6] = currentMoveP1;
+							itemToDisableP1.classList.add("setDisabled");
 							if (f7.classList != "tileClickedP1") {
 								f7.classList.add("tileClickedP1");
 							}
 						} else {
-							alert("Item has already been used!");
+							if (currentGridP2[6] >= currentMoveP1) {
+								alert("Can not take this field!");
+							} else {
+								alert("Item has already been used!");
+							}
 							return;
 						}
 					}
@@ -302,13 +452,19 @@ function clickTile(tile) {
 							f8.classList.add("tileClickedP1");
 						}
 					} else {
-						if (takeItem("p1", currentMoveP1) && currentGridP2[7] < currentMoveP1) {
-							currentGridP1[0] = currentMoveP1;
+						if (getItem("p1") != 0 && currentGridP2[7] < currentMoveP1) {
+							//if (takeItem("p1", currentMoveP1) && currentGridP2[7] < currentMoveP1) {
+							currentGridP1[7] = currentMoveP1;
+							itemToDisableP1.classList.add("setDisabled");
 							if (f8.classList != "tileClickedP1") {
 								f8.classList.add("tileClickedP1");
 							}
 						} else {
-							alert("Item has already been used!");
+							if (currentGridP2[7] >= currentMoveP1) {
+								alert("Can not take this field!");
+							} else {
+								alert("Item has already been used!");
+							}
 							return;
 						}
 					}
@@ -320,13 +476,19 @@ function clickTile(tile) {
 							f9.classList.add("tileClickedP1");
 						}
 					} else {
-						if (takeItem("p1", currentMoveP1) && currentGridP2[8] < currentMoveP1) {
-							currentGridP1[0] = currentMoveP1;
+						if (getItem("p1") != 0 && currentGridP2[8] < currentMoveP1) {
+							//if (takeItem("p1", currentMoveP1) && currentGridP2[8] < currentMoveP1) {
+							currentGridP1[8] = currentMoveP1;
+							itemToDisableP1.classList.add("setDisabled");
 							if (f9.classList != "tileClickedP1") {
 								f9.classList.add("tileClickedP1");
 							}
 						} else {
-							alert("Item has already been used!");
+							if (currentGridP2[8] >= currentMoveP1) {
+								alert("Can not take this field!");
+							} else {
+								alert("Item has already been used!");
+							}
 							return;
 						}
 					}
@@ -337,6 +499,7 @@ function clickTile(tile) {
 			//Turn for player 2
 			statusBarP2.classList.add("hide"); //animating statusbars
 			statusBarP1.classList.remove("hide");
+
 			switch (tile) {
 				case "f1":
 					if (gameMode == "nor") {
@@ -345,10 +508,20 @@ function clickTile(tile) {
 							f1.classList.add("tileClickedP2");
 						}
 					} else {
-						currentGridP2[0] = currentMoveP2;
-						takeItem("p2", currentMoveP2);
-						if (f1.classList != "tileClickedP2") {
-							f1.classList.add("tileClickedP2");
+						if (getItem("p2") != 0 && currentGridP1[0] < currentMoveP2) {
+							//takeItem("p2", currentMoveP2);
+							currentGridP2[0] = currentMoveP2;
+							itemToDisableP2.classList.add("setDisabled");
+							if (f1.classList != "tileClickedP2") {
+								f1.classList.add("tileClickedP2");
+							}
+						} else {
+							if (currentGridP1[0] >= currentMoveP2) {
+								alert("Can not take this field!");
+							} else {
+								alert("Item has already been used!");
+							}
+							return;
 						}
 					}
 					break;
@@ -360,10 +533,20 @@ function clickTile(tile) {
 							f2.classList.add("tileClickedP2");
 						}
 					} else {
-						currentGridP2[0] = currentMoveP2;
-						takeItem("p2", currentMoveP2);
-						if (f2.classList != "tileClickedP2") {
-							f2.classList.add("tileClickedP2");
+						if (getItem("p2") != 0 && currentGridP1[1] < currentMoveP2) {
+							currentGridP2[1] = currentMoveP2;
+							itemToDisableP2.classList.add("setDisabled");
+							//takeItem("p2", currentMoveP2);
+							if (f2.classList != "tileClickedP2") {
+								f2.classList.add("tileClickedP2");
+							}
+						} else {
+							if (currentGridP1[1] >= currentMoveP2) {
+								alert("Can not take this field!");
+							} else {
+								alert("Item has already been used!");
+							}
+							return;
 						}
 					}
 					break;
@@ -374,10 +557,20 @@ function clickTile(tile) {
 							f3.classList.add("tileClickedP2");
 						}
 					} else {
-						currentGridP2[0] = currentMoveP2;
-						takeItem("p2", currentMoveP2);
-						if (f3.classList != "tileClickedP2") {
-							f3.classList.add("tileClickedP2");
+						if (getItem("p2") != 0 && currentGridP1[2] < currentMoveP2) {
+							currentGridP2[2] = currentMoveP2;
+							itemToDisableP2.classList.add("setDisabled");
+							//takeItem("p2", currentMoveP2);
+							if (f3.classList != "tileClickedP2") {
+								f3.classList.add("tileClickedP2");
+							}
+						} else {
+							if (currentGridP1[2] >= currentMoveP2) {
+								alert("Can not take this field!");
+							} else {
+								alert("Item has already been used!");
+							}
+							return;
 						}
 					}
 					break;
@@ -388,10 +581,20 @@ function clickTile(tile) {
 							f4.classList.add("tileClickedP2");
 						}
 					} else {
-						currentGridP2[0] = currentMoveP2;
-						takeItem("p2", currentMoveP2);
-						if (f4.classList != "tileClickedP2") {
-							f4.classList.add("tileClickedP2");
+						if (getItem("p2") != 0 && currentGridP1[3] < currentMoveP2) {
+							currentGridP2[3] = currentMoveP2;
+							itemToDisableP2.classList.add("setDisabled");
+							//takeItem("p2", currentMoveP2);
+							if (f4.classList != "tileClickedP2") {
+								f4.classList.add("tileClickedP2");
+							}
+						} else {
+							if (currentGridP1[3] >= currentMoveP2) {
+								alert("Can not take this field!");
+							} else {
+								alert("Item has already been used!");
+							}
+							return;
 						}
 					}
 					break;
@@ -402,10 +605,20 @@ function clickTile(tile) {
 							f5.classList.add("tileClickedP2");
 						}
 					} else {
-						currentGridP2[0] = currentMoveP2;
-						takeItem("p2", currentMoveP2);
-						if (f5.classList != "tileClickedP2") {
-							f5.classList.add("tileClickedP2");
+						if (getItem("p2") != 0 && currentGridP1[4] < currentMoveP2) {
+							currentGridP2[4] = currentMoveP2;
+							itemToDisableP2.classList.add("setDisabled");
+							//takeItem("p2", currentMoveP2);
+							if (f5.classList != "tileClickedP2") {
+								f5.classList.add("tileClickedP2");
+							}
+						} else {
+							if (currentGridP1[4] >= currentMoveP2) {
+								alert("Can not take this field!");
+							} else {
+								alert("Item has already been used!");
+							}
+							return;
 						}
 					}
 					break;
@@ -416,10 +629,20 @@ function clickTile(tile) {
 							f6.classList.add("tileClickedP2");
 						}
 					} else {
-						currentGridP2[0] = currentMoveP2;
-						takeItem("p2", currentMoveP2);
-						if (f6.classList != "tileClickedP2") {
-							f6.classList.add("tileClickedP2");
+						if (getItem("p2") != 0 && currentGridP1[5] < currentMoveP2) {
+							currentGridP2[5] = currentMoveP2;
+							itemToDisableP2.classList.add("setDisabled");
+							//takeItem("p2", currentMoveP2);
+							if (f6.classList != "tileClickedP2") {
+								f6.classList.add("tileClickedP2");
+							}
+						} else {
+							if (currentGridP1[5] >= currentMoveP2) {
+								alert("Can not take this field!");
+							} else {
+								alert("Item has already been used!");
+							}
+							return;
 						}
 					}
 					break;
@@ -430,10 +653,20 @@ function clickTile(tile) {
 							f7.classList.add("tileClickedP2");
 						}
 					} else {
-						currentGridP2[0] = currentMoveP2;
-						takeItem("p2", currentMoveP2);
-						if (f7.classList != "tileClickedP2") {
-							f7.classList.add("tileClickedP2");
+						if (getItem("p2") != 0 && currentGridP1[6] < currentMoveP2) {
+							currentGridP2[6] = currentMoveP2;
+							itemToDisableP2.classList.add("setDisabled");
+							//takeItem("p2", currentMoveP2);
+							if (f7.classList != "tileClickedP2") {
+								f7.classList.add("tileClickedP2");
+							}
+						} else {
+							if (currentGridP1[6] >= currentMoveP2) {
+								alert("Can not take this field!");
+							} else {
+								alert("Item has already been used!");
+							}
+							return;
 						}
 					}
 					break;
@@ -444,10 +677,20 @@ function clickTile(tile) {
 							f8.classList.add("tileClickedP2");
 						}
 					} else {
-						currentGridP2[0] = currentMoveP2;
-						takeItem("p2", currentMoveP2);
-						if (f8.classList != "tileClickedP2") {
-							f8.classList.add("tileClickedP2");
+						if (getItem("p2") != 0 && currentGridP1[7] < currentMoveP2) {
+							currentGridP2[7] = currentMoveP2;
+							itemToDisableP2.classList.add("setDisabled");
+							//takeItem("p2", currentMoveP2);
+							if (f8.classList != "tileClickedP2") {
+								f8.classList.add("tileClickedP2");
+							}
+						} else {
+							if (currentGridP1[7] >= currentMoveP2) {
+								alert("Can not take this field!");
+							} else {
+								alert("Item has already been used!");
+							}
+							return;
 						}
 					}
 					break;
@@ -458,10 +701,20 @@ function clickTile(tile) {
 							f9.classList.add("tileClickedP2");
 						}
 					} else {
-						currentGridP2[0] = currentMoveP2;
-						takeItem("p2", currentMoveP2);
-						if (f9.classList != "tileClickedP2") {
-							f9.classList.add("tileClickedP2");
+						if (getItem("p2") != 0 && currentGridP1[8] < currentMoveP2) {
+							currentGridP2[0] = currentMoveP2;
+							itemToDisableP2.classList.add("setDisabled");
+							//takeItem("p2", currentMoveP2);
+							if (f9.classList != "tileClickedP2") {
+								f9.classList.add("tileClickedP2");
+							}
+						} else {
+							if (currentGridP1[8] >= currentMoveP2) {
+								alert("Can not take this field!");
+							} else {
+								alert("Item has already been used!");
+							}
+							return;
 						}
 					}
 					break;
@@ -506,7 +759,7 @@ function checkWinNormalP1() {
 	let check1, check2, check3;
 
 	for (let i = 0; i <= 8; i++) {
-		if (currentGridP1[check1] && currentGridP1[check2] && currentGridP1[check3]) {
+		if (currentGridP1[check1] > 0 && currentGridP1[check2] > 0 && currentGridP1[check3] > 0) {
 			return true;
 		} else if (i == 0) {
 			check1 = 0;
@@ -537,18 +790,17 @@ function checkWinNormalP1() {
 			check2 = 4;
 			check3 = 8;
 		} else if (i == 7) {
-			check1, check2, (check3 = 2), 4, 6;
 			check1 = 2;
 			check2 = 4;
 			check3 = 6;
 		}
 	}
 }
-function checkWinNormalP2(grid) {
+function checkWinNormalP2() {
 	let check1, check2, check3;
 
 	for (let i = 0; i <= 8; i++) {
-		if (currentGridP2[check1] && currentGridP2[check2] && currentGridP2[check3]) {
+		if (currentGridP2[check1] > 0 && currentGridP2[check2] > 0 && currentGridP2[check3] > 0) {
 			return true;
 		} else if (i == 0) {
 			check1 = 0;
@@ -588,12 +840,14 @@ function checkWinNormalP2(grid) {
 
 //win check algorithms for advanced mode
 function checkWinAdvP1() {
-	let check1 = 1;
-	let check2 = 1;
-	let check3 = 1;
+	//row 1
+	let check1;
+	let check2;
+	let check3;
 
 	for (let i = 0; i <= 8; i++) {
-		if (currentGridP1[check1] != 0 && currentGridP1[check2] != 0 && currentGridP1[check3] != 0) {
+		//i stands for the varieties to win
+		if (currentGridP1[check1] > 0 && currentGridP1[check2] > 0 && currentGridP1[check3] > 0) {
 			return true;
 		} else if (i == 0) {
 			check1 = 0;
@@ -620,20 +874,25 @@ function checkWinAdvP1() {
 			check2 = 5;
 			check3 = 8;
 		} else if (i == 6) {
-			check1, check2, (check3 = 0), 4, 8;
+			check1 = 0;
+			check2 = 4;
+			check3 = 8;
 		} else if (i == 7) {
-			check1, check2, (check3 = 2), 4, 6;
+			check1 = 2;
+			check2 = 4;
+			check3 = 6;
 		}
 	}
 }
 
 function checkWinAdvP2() {
+	//rows
 	let check1 = 1;
 	let check2 = 1;
 	let check3 = 1;
 
 	for (let i = 0; i <= 8; i++) {
-		if (currentGridP2[check1] != 0 && currentGridP2[check2] != 0 && currentGridP2[check3] != 0) {
+		if (currentGridP2[check1] > 0 && currentGridP2[check2] > 0 && currentGridP2[check3] > 0) {
 			return true;
 		} else if (i == 0) {
 			check1 = 0;
@@ -660,9 +919,13 @@ function checkWinAdvP2() {
 			check2 = 5;
 			check3 = 8;
 		} else if (i == 6) {
-			check1, check2, (check3 = 0), 4, 8;
+			check1 = 0;
+			check2 = 4;
+			check3 = 8;
 		} else if (i == 7) {
-			check1, check2, (check3 = 2), 4, 6;
+			check1 = 2;
+			check2 = 4;
+			check3 = 6;
 		}
 	}
 }
@@ -671,18 +934,39 @@ function reset() {
 	gameActive = true;
 	isTurn = true;
 	counter = 0;
+
 	if (statusBarP2.classList != "hide") statusBarP2.classList.add("hide");
 	statusBarP1.classList.remove("hide");
 
 	currentGridP1 = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 
 	currentGridP2 = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+	player1 = {
+		name: "",
+		id: "",
+		inventory: {
+			i1: [1, 1],
+			i2: [2, 2],
+			i3: [3, 3],
+		},
+	};
+	player2 = {
+		name: "",
+		id: "",
+		inventory: {
+			i1: [1, 1],
+			i2: [2, 2],
+			i3: [3, 3],
+		},
+	};
+
 	removeClassFromAllElements("setP1move");
 	removeClassFromAllElements("setP2move");
+	removeClassFromAllElements("setDisabled");
 	removeClassFromAllElements("tileClickedP1");
 	removeClassFromAllElements("tileClickedP2");
 }
-
 // Remove a class from all elements
 function removeClassFromAllElements(className) {
 	const elements = document.querySelectorAll("." + className);
