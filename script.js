@@ -337,6 +337,7 @@ function clickTile(tile) {
 							//check for item availability
 							statusBarP1.classList.add("hide"); //animating statusbars
 							statusBarP2.classList.remove("hide");
+							removeClassFromAllElements("setP1move");
 							removeItem("p1");
 							currentGridP1[0] = currentMoveP1;
 							itemToDisableP1.classList.add("setDisabled");
@@ -365,6 +366,7 @@ function clickTile(tile) {
 						if (isItem("p1") != 0 && currentGridP2[1] < currentMoveP1) {
 							statusBarP1.classList.add("hide"); //animating statusbars
 							statusBarP2.classList.remove("hide");
+							removeClassFromAllElements("setP1move");
 							removeItem("p1");
 							currentGridP1[1] = currentMoveP1;
 							itemToDisableP1.classList.add("setDisabled");
@@ -391,6 +393,7 @@ function clickTile(tile) {
 						if (isItem("p1") != 0 && currentGridP2[2] < currentMoveP1) {
 							statusBarP1.classList.add("hide"); //animating statusbars
 							statusBarP2.classList.remove("hide");
+							removeClassFromAllElements("setP1move");
 							removeItem("p1");
 							currentGridP1[2] = currentMoveP1;
 							itemToDisableP1.classList.add("setDisabled");
@@ -417,6 +420,7 @@ function clickTile(tile) {
 						if (isItem("p1") != 0 && currentGridP2[3] < currentMoveP1) {
 							statusBarP1.classList.add("hide"); //animating statusbars
 							statusBarP2.classList.remove("hide");
+							removeClassFromAllElements("setP1move");
 							removeItem("p1");
 							currentGridP1[3] = currentMoveP1;
 							itemToDisableP1.classList.add("setDisabled");
@@ -443,6 +447,7 @@ function clickTile(tile) {
 						if (isItem("p1") != 0 && currentGridP2[4] < currentMoveP1) {
 							statusBarP1.classList.add("hide"); //animating statusbars
 							statusBarP2.classList.remove("hide");
+							removeClassFromAllElements("setP1move");
 							removeItem("p1");
 							currentGridP1[4] = currentMoveP1;
 							itemToDisableP1.classList.add("setDisabled");
@@ -469,6 +474,7 @@ function clickTile(tile) {
 						if (isItem("p1") != 0 && currentGridP2[5] < currentMoveP1) {
 							statusBarP1.classList.add("hide"); //animating statusbars
 							statusBarP2.classList.remove("hide");
+							removeClassFromAllElements("setP1move");
 							removeItem("p1");
 							currentGridP1[5] = currentMoveP1;
 							itemToDisableP1.classList.add("setDisabled");
@@ -495,6 +501,7 @@ function clickTile(tile) {
 						if (isItem("p1") != 0 && currentGridP2[6] < currentMoveP1) {
 							statusBarP1.classList.add("hide"); //animating statusbars
 							statusBarP2.classList.remove("hide");
+							removeClassFromAllElements("setP1move");
 							removeItem("p1");
 							currentGridP1[6] = currentMoveP1;
 							itemToDisableP1.classList.add("setDisabled");
@@ -521,6 +528,7 @@ function clickTile(tile) {
 						if (isItem("p1") != 0 && currentGridP2[7] < currentMoveP1) {
 							statusBarP1.classList.add("hide"); //animating statusbars
 							statusBarP2.classList.remove("hide");
+							removeClassFromAllElements("setP1move");
 							removeItem("p1");
 							currentGridP1[7] = currentMoveP1;
 							itemToDisableP1.classList.add("setDisabled");
@@ -547,6 +555,7 @@ function clickTile(tile) {
 						if (isItem("p1") != 0 && currentGridP2[8] < currentMoveP1) {
 							statusBarP1.classList.add("hide"); //animating statusbars
 							statusBarP2.classList.remove("hide");
+							removeClassFromAllElements("setP1move");
 							removeItem("p1");
 							currentGridP1[8] = currentMoveP1;
 							itemToDisableP1.classList.add("setDisabled");
@@ -579,6 +588,7 @@ function clickTile(tile) {
 						if (isItem("p2") != 0 && currentGridP1[0] < currentMoveP2) {
 							statusBarP2.classList.add("hide"); //animating statusbars
 							statusBarP1.classList.remove("hide");
+							removeClassFromAllElements("setP2move");
 							removeItem("p2");
 							currentGridP2[0] = currentMoveP2;
 							itemToDisableP2.classList.add("setDisabled");
@@ -606,6 +616,7 @@ function clickTile(tile) {
 						if (isItem("p2") != 0 && currentGridP1[1] < currentMoveP2) {
 							statusBarP2.classList.add("hide"); //animating statusbars
 							statusBarP1.classList.remove("hide");
+							removeClassFromAllElements("setP2move");
 							removeItem("p2");
 							currentGridP2[1] = currentMoveP2;
 							itemToDisableP2.classList.add("setDisabled");
@@ -632,6 +643,7 @@ function clickTile(tile) {
 						if (isItem("p2") != 0 && currentGridP1[2] < currentMoveP2) {
 							statusBarP2.classList.add("hide"); //animating statusbars
 							statusBarP1.classList.remove("hide");
+							removeClassFromAllElements("setP2move");
 							removeItem("p2");
 							currentGridP2[2] = currentMoveP2;
 							itemToDisableP2.classList.add("setDisabled");
@@ -658,6 +670,7 @@ function clickTile(tile) {
 						if (isItem("p2") != 0 && currentGridP1[3] < currentMoveP2) {
 							statusBarP2.classList.add("hide"); //animating statusbars
 							statusBarP1.classList.remove("hide");
+							removeClassFromAllElements("setP2move");
 							removeItem("p2");
 							currentGridP2[3] = currentMoveP2;
 							itemToDisableP2.classList.add("setDisabled");
@@ -684,6 +697,7 @@ function clickTile(tile) {
 						if (isItem("p2") != 0 && currentGridP1[4] < currentMoveP2) {
 							statusBarP2.classList.add("hide"); //animating statusbars
 							statusBarP1.classList.remove("hide");
+							removeClassFromAllElements("setP2move");
 							removeItem("p2");
 							currentGridP2[4] = currentMoveP2;
 							itemToDisableP2.classList.add("setDisabled");
@@ -710,6 +724,7 @@ function clickTile(tile) {
 						if (isItem("p2") != 0 && currentGridP1[5] < currentMoveP2) {
 							statusBarP2.classList.add("hide"); //animating statusbars
 							statusBarP1.classList.remove("hide");
+							removeClassFromAllElements("setP2move");
 							removeItem("p2");
 							currentGridP2[5] = currentMoveP2;
 							itemToDisableP2.classList.add("setDisabled");
@@ -736,6 +751,7 @@ function clickTile(tile) {
 						if (isItem("p2") != 0 && currentGridP1[6] < currentMoveP2) {
 							statusBarP2.classList.add("hide"); //animating statusbars
 							statusBarP1.classList.remove("hide");
+							removeClassFromAllElements("setP2move");
 							removeItem("p2");
 							currentGridP2[6] = currentMoveP2;
 							itemToDisableP2.classList.add("setDisabled");
@@ -762,6 +778,7 @@ function clickTile(tile) {
 						if (isItem("p2") != 0 && currentGridP1[7] < currentMoveP2) {
 							statusBarP2.classList.add("hide"); //animating statusbars
 							statusBarP1.classList.remove("hide");
+							removeClassFromAllElements("setP2move");
 							removeItem("p2");
 							currentGridP2[7] = currentMoveP2;
 							itemToDisableP2.classList.add("setDisabled");
@@ -788,6 +805,7 @@ function clickTile(tile) {
 						if (isItem("p2") != 0 && currentGridP1[8] < currentMoveP2) {
 							statusBarP2.classList.add("hide"); //animating statusbars
 							statusBarP1.classList.remove("hide");
+							removeClassFromAllElements("setP2move");
 							removeItem("p2");
 							currentGridP2[0] = currentMoveP2;
 							itemToDisableP2.classList.add("setDisabled");
@@ -1047,8 +1065,9 @@ function reset() {
 		},
 	};
 
-	removeClassFromAllElements("setP1move");
-	removeClassFromAllElements("setP2move");
+	setMove("p1", 1.1);
+	setMove("p2", 1.1);
+
 	removeClassFromAllElements("setDisabled");
 	removeClassFromAllElements("tileClickedP1");
 	removeClassFromAllElements("tileClickedP2");
