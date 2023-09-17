@@ -67,12 +67,16 @@ setMode("nor");
 //set the game mod
 function setMode(mode) {
 	reset();
+	let norBTN = document.querySelector(".normalBTN");
+	let advBTN = document.querySelector(".advancedBTN");
 	if (mode == "nor") {
 		document.title = "TicTacToe";
 		document.getElementById("header1").textContent = "TicTacToe";
 		allItems.forEach((item) => {
 			if (item.classList != "hide") item.classList.add("hide");
 		});
+		norBTN.style.backgroundColor = "#580ef6";
+		advBTN.style.backgroundColor = "#1a1c22";
 	}
 	if (mode == "adv") {
 		document.title = "TicTacToe Advanced";
@@ -82,6 +86,10 @@ function setMode(mode) {
 		});
 		p1Item1_1.classList.add("setP1move");
 		p2Item1_1.classList.add("setP2move");
+		setMove("p1", 1.1);
+		setMove("p2", 1.1);
+		advBTN.style.backgroundColor = "#580ef6";
+		norBTN.style.backgroundColor = "#1a1c22";
 	}
 	gameMode = mode;
 }
@@ -140,7 +148,7 @@ function setMove(p, n) {
 			case 2.1:
 				p2Item2_1.classList.add("setP2move");
 				currentMoveP2 = 2;
-				itemToDisableP2 = p1Item2_1;
+				itemToDisableP2 = p2Item2_1;
 				break;
 			case 2.2:
 				p2Item2_2.classList.add("setP2move");
@@ -162,31 +170,78 @@ function setMove(p, n) {
 		}
 	}
 }
-//function takes item from player
-/*function takeItem(p, item) {
-	if (p === "p1") {
-		//for player 1
-		for (let index = 0; index < player1.length; index++) {
-			if (player1[index] != null && player1[index] == item) {
-				player1[index] == null;
-				return true;
-			}
-		}
-		return false;
-	} else {
-		//for player 2
-		for (let index = 0; index < player2.length; index++) {
-			if (player2[index] != null && player2[index] == item) {
-				player2[index] == null;
-				return true;
-			}
-		}
-		return false;
-	}
-}*/
 
-//function takes item from player and returns it
-function getItem(p) {
+//function checks items from player
+function isItem(p) {
+	if (p != null) {
+		if (p === "p1") {
+			//player 1
+			switch (currentMoveP1) {
+				case 1:
+					if (player1.inventory.i1[0] == 1) {
+						//Checks for items in array
+						return 1;
+					} else if (player1.inventory.i1[1] == 1) {
+						return 1;
+					}
+					break;
+				case 2:
+					if (player1.inventory.i2[0] == 2) {
+						//Checks for items in array
+
+						return 2;
+					} else if (player1.inventory.i1[1] == 2) {
+						return 2;
+					}
+					break;
+				case 3:
+					if (player1.inventory.i3[0] == 3) {
+						//Checks for items in array
+
+						return 3;
+					} else if (player1.inventory.i3[1] == 3) {
+						return 3;
+					}
+					break;
+			}
+			return 0;
+		} else {
+			//player 2
+			switch (currentMoveP2) {
+				case 1:
+					if (player2.inventory.i1[0] == 1) {
+						//Checks for items in array
+
+						return 1;
+					} else if (player1.inventory.i1[1] == 1) {
+						return 1;
+					}
+					break;
+				case 2:
+					if (player2.inventory.i2[0] == 2) {
+						//Checks for items in array
+
+						return 2;
+					} else if (player2.inventory.i2[1] == 2) {
+						return 2;
+					}
+					break;
+				case 3:
+					if (player2.inventory.i3[0] == 3) {
+						//Checks for items in array
+
+						return 3;
+					} else if (player2.inventory.i3[1] == 3) {
+						return 3;
+					}
+					break;
+			}
+			return 0;
+		}
+	}
+}
+
+function removeItem(p) {
 	if (p != null) {
 		if (p === "p1") {
 			//player 1
@@ -264,14 +319,10 @@ function getItem(p) {
 
 //firstly animate the clicked tile and then log it into the system
 function clickTile(tile) {
-	console.log(currentGridP1);
 	if (gameActive) {
 		counter++;
 
 		if (isTurn) {
-			statusBarP1.classList.add("hide"); //animating statusbars
-			statusBarP2.classList.remove("hide");
-
 			switch (tile) {
 				case "f1":
 					if (gameMode == "nor") {
@@ -282,8 +333,12 @@ function clickTile(tile) {
 						}
 					} else {
 						//advanced mode
-						if (getItem("p1") != 0 && currentGridP2[0] < currentMoveP1) {
+						if (isItem("p1") != 0 && currentGridP2[0] < currentMoveP1) {
 							//check for item availability
+							statusBarP1.classList.add("hide"); //animating statusbars
+							statusBarP2.classList.remove("hide");
+							removeClassFromAllElements("setP1move");
+							removeItem("p1");
 							currentGridP1[0] = currentMoveP1;
 							itemToDisableP1.classList.add("setDisabled");
 							//coloring tile
@@ -308,8 +363,11 @@ function clickTile(tile) {
 							f2.classList.add("tileClickedP1");
 						}
 					} else {
-						if (getItem("p1") != 0 && currentGridP2[1] < currentMoveP1) {
-							//if (takeItem("p1", currentMoveP1) && currentGridP2[1] < currentMoveP1) {
+						if (isItem("p1") != 0 && currentGridP2[1] < currentMoveP1) {
+							statusBarP1.classList.add("hide"); //animating statusbars
+							statusBarP2.classList.remove("hide");
+							removeClassFromAllElements("setP1move");
+							removeItem("p1");
 							currentGridP1[1] = currentMoveP1;
 							itemToDisableP1.classList.add("setDisabled");
 							if (f2.classList != "tileClickedP1") {
@@ -332,8 +390,11 @@ function clickTile(tile) {
 							f3.classList.add("tileClickedP1");
 						}
 					} else {
-						if (getItem("p1") != 0 && currentGridP2[2] < currentMoveP1) {
-							//if (takeItem("p1", currentMoveP1) && currentGridP2[2] < currentMoveP1) {
+						if (isItem("p1") != 0 && currentGridP2[2] < currentMoveP1) {
+							statusBarP1.classList.add("hide"); //animating statusbars
+							statusBarP2.classList.remove("hide");
+							removeClassFromAllElements("setP1move");
+							removeItem("p1");
 							currentGridP1[2] = currentMoveP1;
 							itemToDisableP1.classList.add("setDisabled");
 							if (f3.classList != "tileClickedP1") {
@@ -356,8 +417,11 @@ function clickTile(tile) {
 							f4.classList.add("tileClickedP1");
 						}
 					} else {
-						if (getItem("p1") != 0 && currentGridP2[3] < currentMoveP1) {
-							//if (takeItem("p1", currentMoveP1) && currentGridP2[3] < currentMoveP1) {
+						if (isItem("p1") != 0 && currentGridP2[3] < currentMoveP1) {
+							statusBarP1.classList.add("hide"); //animating statusbars
+							statusBarP2.classList.remove("hide");
+							removeClassFromAllElements("setP1move");
+							removeItem("p1");
 							currentGridP1[3] = currentMoveP1;
 							itemToDisableP1.classList.add("setDisabled");
 							if (f4.classList != "tileClickedP1") {
@@ -380,8 +444,11 @@ function clickTile(tile) {
 							f5.classList.add("tileClickedP1");
 						}
 					} else {
-						if (getItem("p1") != 0 && currentGridP2[4] < currentMoveP1) {
-							//if (takeItem("p1", currentMoveP1) && currentGridP2[4] < currentMoveP1) {
+						if (isItem("p1") != 0 && currentGridP2[4] < currentMoveP1) {
+							statusBarP1.classList.add("hide"); //animating statusbars
+							statusBarP2.classList.remove("hide");
+							removeClassFromAllElements("setP1move");
+							removeItem("p1");
 							currentGridP1[4] = currentMoveP1;
 							itemToDisableP1.classList.add("setDisabled");
 							if (f5.classList != "tileClickedP1") {
@@ -404,8 +471,11 @@ function clickTile(tile) {
 							f6.classList.add("tileClickedP1");
 						}
 					} else {
-						if (getItem("p1") != 0 && currentGridP2[5] < currentMoveP1) {
-							//if (takeItem("p1", currentMoveP1) && currentGridP2[5] < currentMoveP1) {
+						if (isItem("p1") != 0 && currentGridP2[5] < currentMoveP1) {
+							statusBarP1.classList.add("hide"); //animating statusbars
+							statusBarP2.classList.remove("hide");
+							removeClassFromAllElements("setP1move");
+							removeItem("p1");
 							currentGridP1[5] = currentMoveP1;
 							itemToDisableP1.classList.add("setDisabled");
 							if (f6.classList != "tileClickedP1") {
@@ -428,8 +498,11 @@ function clickTile(tile) {
 							f7.classList.add("tileClickedP1");
 						}
 					} else {
-						if (getItem("p1") != 0 && currentGridP2[6] < currentMoveP1) {
-							//if (takeItem("p1", currentMoveP1) && currentGridP2[6] < currentMoveP1) {
+						if (isItem("p1") != 0 && currentGridP2[6] < currentMoveP1) {
+							statusBarP1.classList.add("hide"); //animating statusbars
+							statusBarP2.classList.remove("hide");
+							removeClassFromAllElements("setP1move");
+							removeItem("p1");
 							currentGridP1[6] = currentMoveP1;
 							itemToDisableP1.classList.add("setDisabled");
 							if (f7.classList != "tileClickedP1") {
@@ -452,8 +525,11 @@ function clickTile(tile) {
 							f8.classList.add("tileClickedP1");
 						}
 					} else {
-						if (getItem("p1") != 0 && currentGridP2[7] < currentMoveP1) {
-							//if (takeItem("p1", currentMoveP1) && currentGridP2[7] < currentMoveP1) {
+						if (isItem("p1") != 0 && currentGridP2[7] < currentMoveP1) {
+							statusBarP1.classList.add("hide"); //animating statusbars
+							statusBarP2.classList.remove("hide");
+							removeClassFromAllElements("setP1move");
+							removeItem("p1");
 							currentGridP1[7] = currentMoveP1;
 							itemToDisableP1.classList.add("setDisabled");
 							if (f8.classList != "tileClickedP1") {
@@ -476,8 +552,11 @@ function clickTile(tile) {
 							f9.classList.add("tileClickedP1");
 						}
 					} else {
-						if (getItem("p1") != 0 && currentGridP2[8] < currentMoveP1) {
-							//if (takeItem("p1", currentMoveP1) && currentGridP2[8] < currentMoveP1) {
+						if (isItem("p1") != 0 && currentGridP2[8] < currentMoveP1) {
+							statusBarP1.classList.add("hide"); //animating statusbars
+							statusBarP2.classList.remove("hide");
+							removeClassFromAllElements("setP1move");
+							removeItem("p1");
 							currentGridP1[8] = currentMoveP1;
 							itemToDisableP1.classList.add("setDisabled");
 							if (f9.classList != "tileClickedP1") {
@@ -497,8 +576,6 @@ function clickTile(tile) {
 			isTurn = false;
 		} else {
 			//Turn for player 2
-			statusBarP2.classList.add("hide"); //animating statusbars
-			statusBarP1.classList.remove("hide");
 
 			switch (tile) {
 				case "f1":
@@ -508,8 +585,11 @@ function clickTile(tile) {
 							f1.classList.add("tileClickedP2");
 						}
 					} else {
-						if (getItem("p2") != 0 && currentGridP1[0] < currentMoveP2) {
-							//takeItem("p2", currentMoveP2);
+						if (isItem("p2") != 0 && currentGridP1[0] < currentMoveP2) {
+							statusBarP2.classList.add("hide"); //animating statusbars
+							statusBarP1.classList.remove("hide");
+							removeClassFromAllElements("setP2move");
+							removeItem("p2");
 							currentGridP2[0] = currentMoveP2;
 							itemToDisableP2.classList.add("setDisabled");
 							if (f1.classList != "tileClickedP2") {
@@ -533,10 +613,13 @@ function clickTile(tile) {
 							f2.classList.add("tileClickedP2");
 						}
 					} else {
-						if (getItem("p2") != 0 && currentGridP1[1] < currentMoveP2) {
+						if (isItem("p2") != 0 && currentGridP1[1] < currentMoveP2) {
+							statusBarP2.classList.add("hide"); //animating statusbars
+							statusBarP1.classList.remove("hide");
+							removeClassFromAllElements("setP2move");
+							removeItem("p2");
 							currentGridP2[1] = currentMoveP2;
 							itemToDisableP2.classList.add("setDisabled");
-							//takeItem("p2", currentMoveP2);
 							if (f2.classList != "tileClickedP2") {
 								f2.classList.add("tileClickedP2");
 							}
@@ -557,10 +640,13 @@ function clickTile(tile) {
 							f3.classList.add("tileClickedP2");
 						}
 					} else {
-						if (getItem("p2") != 0 && currentGridP1[2] < currentMoveP2) {
+						if (isItem("p2") != 0 && currentGridP1[2] < currentMoveP2) {
+							statusBarP2.classList.add("hide"); //animating statusbars
+							statusBarP1.classList.remove("hide");
+							removeClassFromAllElements("setP2move");
+							removeItem("p2");
 							currentGridP2[2] = currentMoveP2;
 							itemToDisableP2.classList.add("setDisabled");
-							//takeItem("p2", currentMoveP2);
 							if (f3.classList != "tileClickedP2") {
 								f3.classList.add("tileClickedP2");
 							}
@@ -581,10 +667,13 @@ function clickTile(tile) {
 							f4.classList.add("tileClickedP2");
 						}
 					} else {
-						if (getItem("p2") != 0 && currentGridP1[3] < currentMoveP2) {
+						if (isItem("p2") != 0 && currentGridP1[3] < currentMoveP2) {
+							statusBarP2.classList.add("hide"); //animating statusbars
+							statusBarP1.classList.remove("hide");
+							removeClassFromAllElements("setP2move");
+							removeItem("p2");
 							currentGridP2[3] = currentMoveP2;
 							itemToDisableP2.classList.add("setDisabled");
-							//takeItem("p2", currentMoveP2);
 							if (f4.classList != "tileClickedP2") {
 								f4.classList.add("tileClickedP2");
 							}
@@ -605,10 +694,13 @@ function clickTile(tile) {
 							f5.classList.add("tileClickedP2");
 						}
 					} else {
-						if (getItem("p2") != 0 && currentGridP1[4] < currentMoveP2) {
+						if (isItem("p2") != 0 && currentGridP1[4] < currentMoveP2) {
+							statusBarP2.classList.add("hide"); //animating statusbars
+							statusBarP1.classList.remove("hide");
+							removeClassFromAllElements("setP2move");
+							removeItem("p2");
 							currentGridP2[4] = currentMoveP2;
 							itemToDisableP2.classList.add("setDisabled");
-							//takeItem("p2", currentMoveP2);
 							if (f5.classList != "tileClickedP2") {
 								f5.classList.add("tileClickedP2");
 							}
@@ -629,10 +721,13 @@ function clickTile(tile) {
 							f6.classList.add("tileClickedP2");
 						}
 					} else {
-						if (getItem("p2") != 0 && currentGridP1[5] < currentMoveP2) {
+						if (isItem("p2") != 0 && currentGridP1[5] < currentMoveP2) {
+							statusBarP2.classList.add("hide"); //animating statusbars
+							statusBarP1.classList.remove("hide");
+							removeClassFromAllElements("setP2move");
+							removeItem("p2");
 							currentGridP2[5] = currentMoveP2;
 							itemToDisableP2.classList.add("setDisabled");
-							//takeItem("p2", currentMoveP2);
 							if (f6.classList != "tileClickedP2") {
 								f6.classList.add("tileClickedP2");
 							}
@@ -653,10 +748,13 @@ function clickTile(tile) {
 							f7.classList.add("tileClickedP2");
 						}
 					} else {
-						if (getItem("p2") != 0 && currentGridP1[6] < currentMoveP2) {
+						if (isItem("p2") != 0 && currentGridP1[6] < currentMoveP2) {
+							statusBarP2.classList.add("hide"); //animating statusbars
+							statusBarP1.classList.remove("hide");
+							removeClassFromAllElements("setP2move");
+							removeItem("p2");
 							currentGridP2[6] = currentMoveP2;
 							itemToDisableP2.classList.add("setDisabled");
-							//takeItem("p2", currentMoveP2);
 							if (f7.classList != "tileClickedP2") {
 								f7.classList.add("tileClickedP2");
 							}
@@ -677,10 +775,13 @@ function clickTile(tile) {
 							f8.classList.add("tileClickedP2");
 						}
 					} else {
-						if (getItem("p2") != 0 && currentGridP1[7] < currentMoveP2) {
+						if (isItem("p2") != 0 && currentGridP1[7] < currentMoveP2) {
+							statusBarP2.classList.add("hide"); //animating statusbars
+							statusBarP1.classList.remove("hide");
+							removeClassFromAllElements("setP2move");
+							removeItem("p2");
 							currentGridP2[7] = currentMoveP2;
 							itemToDisableP2.classList.add("setDisabled");
-							//takeItem("p2", currentMoveP2);
 							if (f8.classList != "tileClickedP2") {
 								f8.classList.add("tileClickedP2");
 							}
@@ -701,10 +802,13 @@ function clickTile(tile) {
 							f9.classList.add("tileClickedP2");
 						}
 					} else {
-						if (getItem("p2") != 0 && currentGridP1[8] < currentMoveP2) {
+						if (isItem("p2") != 0 && currentGridP1[8] < currentMoveP2) {
+							statusBarP2.classList.add("hide"); //animating statusbars
+							statusBarP1.classList.remove("hide");
+							removeClassFromAllElements("setP2move");
+							removeItem("p2");
 							currentGridP2[0] = currentMoveP2;
 							itemToDisableP2.classList.add("setDisabled");
-							//takeItem("p2", currentMoveP2);
 							if (f9.classList != "tileClickedP2") {
 								f9.classList.add("tileClickedP2");
 							}
@@ -961,8 +1065,9 @@ function reset() {
 		},
 	};
 
-	removeClassFromAllElements("setP1move");
-	removeClassFromAllElements("setP2move");
+	setMove("p1", 1.1);
+	setMove("p2", 1.1);
+
 	removeClassFromAllElements("setDisabled");
 	removeClassFromAllElements("tileClickedP1");
 	removeClassFromAllElements("tileClickedP2");
