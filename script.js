@@ -67,12 +67,16 @@ setMode("nor");
 //set the game mod
 function setMode(mode) {
 	reset();
+	let norBTN = document.querySelector(".normalBTN");
+	let advBTN = document.querySelector(".advancedBTN"); 
 	if (mode == "nor") {
 		document.title = "TicTacToe";
 		document.getElementById("header1").textContent = "TicTacToe";
 		allItems.forEach((item) => {
 			if (item.classList != "hide") item.classList.add("hide");
 		});
+		norBTN.style.backgroundColor = "#580ef6";
+		advBTN.style.backgroundColor = "#1a1c22";
 	}
 	if (mode == "adv") {
 		document.title = "TicTacToe Advanced";
@@ -84,6 +88,8 @@ function setMode(mode) {
 		p2Item1_1.classList.add("setP2move");
 		setMove("p1", 1.1);
 		setMove("p2", 1.1);
+		advBTN.style.backgroundColor = "#580ef6";
+		norBTN.style.backgroundColor = "#1a1c22";
 	}
 	gameMode = mode;
 }
@@ -142,7 +148,7 @@ function setMove(p, n) {
 			case 2.1:
 				p2Item2_1.classList.add("setP2move");
 				currentMoveP2 = 2;
-				itemToDisableP2 = p1Item2_1;
+				itemToDisableP2 = p2Item2_1;
 				break;
 			case 2.2:
 				p2Item2_2.classList.add("setP2move");
