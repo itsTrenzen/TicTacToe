@@ -68,7 +68,7 @@ setMode("nor");
 function setMode(mode) {
 	reset();
 	let norBTN = document.querySelector(".normalBTN");
-	let advBTN = document.querySelector(".advancedBTN"); 
+	let advBTN = document.querySelector(".advancedBTN");
 	if (mode == "nor") {
 		document.title = "TicTacToe";
 		document.getElementById("header1").textContent = "TicTacToe";
@@ -170,30 +170,8 @@ function setMove(p, n) {
 		}
 	}
 }
-//function takes item from player
-/*function takeItem(p, item) {
-	if (p === "p1") {
-		//for player 1
-		for (let index = 0; index < player1.length; index++) {
-			if (player1[index] != null && player1[index] == item) {
-				player1[index] == null;
-				return true;
-			}
-		}
-		return false;
-	} else {
-		//for player 2
-		for (let index = 0; index < player2.length; index++) {
-			if (player2[index] != null && player2[index] == item) {
-				player2[index] == null;
-				return true;
-			}
-		}
-		return false;
-	}
-}*/
 
-//function takes item from player and returns it
+//function checks items from player
 function isItem(p) {
 	if (p != null) {
 		if (p === "p1") {
@@ -345,9 +323,6 @@ function clickTile(tile) {
 		counter++;
 
 		if (isTurn) {
-			statusBarP1.classList.add("hide"); //animating statusbars
-			statusBarP2.classList.remove("hide");
-
 			switch (tile) {
 				case "f1":
 					if (gameMode == "nor") {
@@ -360,6 +335,8 @@ function clickTile(tile) {
 						//advanced mode
 						if (isItem("p1") != 0 && currentGridP2[0] < currentMoveP1) {
 							//check for item availability
+							statusBarP1.classList.add("hide"); //animating statusbars
+							statusBarP2.classList.remove("hide");
 							removeItem("p1");
 							currentGridP1[0] = currentMoveP1;
 							itemToDisableP1.classList.add("setDisabled");
@@ -386,7 +363,8 @@ function clickTile(tile) {
 						}
 					} else {
 						if (isItem("p1") != 0 && currentGridP2[1] < currentMoveP1) {
-							//if (takeItem("p1", currentMoveP1) && currentGridP2[1] < currentMoveP1) {
+							statusBarP1.classList.add("hide"); //animating statusbars
+							statusBarP2.classList.remove("hide");
 							removeItem("p1");
 							currentGridP1[1] = currentMoveP1;
 							itemToDisableP1.classList.add("setDisabled");
@@ -411,7 +389,8 @@ function clickTile(tile) {
 						}
 					} else {
 						if (isItem("p1") != 0 && currentGridP2[2] < currentMoveP1) {
-							//if (takeItem("p1", currentMoveP1) && currentGridP2[2] < currentMoveP1) {
+							statusBarP1.classList.add("hide"); //animating statusbars
+							statusBarP2.classList.remove("hide");
 							removeItem("p1");
 							currentGridP1[2] = currentMoveP1;
 							itemToDisableP1.classList.add("setDisabled");
@@ -436,7 +415,8 @@ function clickTile(tile) {
 						}
 					} else {
 						if (isItem("p1") != 0 && currentGridP2[3] < currentMoveP1) {
-							//if (takeItem("p1", currentMoveP1) && currentGridP2[3] < currentMoveP1) {
+							statusBarP1.classList.add("hide"); //animating statusbars
+							statusBarP2.classList.remove("hide");
 							removeItem("p1");
 							currentGridP1[3] = currentMoveP1;
 							itemToDisableP1.classList.add("setDisabled");
@@ -461,7 +441,8 @@ function clickTile(tile) {
 						}
 					} else {
 						if (isItem("p1") != 0 && currentGridP2[4] < currentMoveP1) {
-							//if (takeItem("p1", currentMoveP1) && currentGridP2[4] < currentMoveP1) {
+							statusBarP1.classList.add("hide"); //animating statusbars
+							statusBarP2.classList.remove("hide");
 							removeItem("p1");
 							currentGridP1[4] = currentMoveP1;
 							itemToDisableP1.classList.add("setDisabled");
@@ -486,7 +467,8 @@ function clickTile(tile) {
 						}
 					} else {
 						if (isItem("p1") != 0 && currentGridP2[5] < currentMoveP1) {
-							//if (takeItem("p1", currentMoveP1) && currentGridP2[5] < currentMoveP1) {
+							statusBarP1.classList.add("hide"); //animating statusbars
+							statusBarP2.classList.remove("hide");
 							removeItem("p1");
 							currentGridP1[5] = currentMoveP1;
 							itemToDisableP1.classList.add("setDisabled");
@@ -511,7 +493,8 @@ function clickTile(tile) {
 						}
 					} else {
 						if (isItem("p1") != 0 && currentGridP2[6] < currentMoveP1) {
-							//if (takeItem("p1", currentMoveP1) && currentGridP2[6] < currentMoveP1) {
+							statusBarP1.classList.add("hide"); //animating statusbars
+							statusBarP2.classList.remove("hide");
 							removeItem("p1");
 							currentGridP1[6] = currentMoveP1;
 							itemToDisableP1.classList.add("setDisabled");
@@ -536,7 +519,8 @@ function clickTile(tile) {
 						}
 					} else {
 						if (isItem("p1") != 0 && currentGridP2[7] < currentMoveP1) {
-							//if (takeItem("p1", currentMoveP1) && currentGridP2[7] < currentMoveP1) {
+							statusBarP1.classList.add("hide"); //animating statusbars
+							statusBarP2.classList.remove("hide");
 							removeItem("p1");
 							currentGridP1[7] = currentMoveP1;
 							itemToDisableP1.classList.add("setDisabled");
@@ -561,7 +545,8 @@ function clickTile(tile) {
 						}
 					} else {
 						if (isItem("p1") != 0 && currentGridP2[8] < currentMoveP1) {
-							//if (takeItem("p1", currentMoveP1) && currentGridP2[8] < currentMoveP1) {
+							statusBarP1.classList.add("hide"); //animating statusbars
+							statusBarP2.classList.remove("hide");
 							removeItem("p1");
 							currentGridP1[8] = currentMoveP1;
 							itemToDisableP1.classList.add("setDisabled");
@@ -582,8 +567,6 @@ function clickTile(tile) {
 			isTurn = false;
 		} else {
 			//Turn for player 2
-			statusBarP2.classList.add("hide"); //animating statusbars
-			statusBarP1.classList.remove("hide");
 
 			switch (tile) {
 				case "f1":
@@ -594,7 +577,8 @@ function clickTile(tile) {
 						}
 					} else {
 						if (isItem("p2") != 0 && currentGridP1[0] < currentMoveP2) {
-							//takeItem("p2", currentMoveP2);
+							statusBarP2.classList.add("hide"); //animating statusbars
+							statusBarP1.classList.remove("hide");
 							removeItem("p2");
 							currentGridP2[0] = currentMoveP2;
 							itemToDisableP2.classList.add("setDisabled");
@@ -620,10 +604,11 @@ function clickTile(tile) {
 						}
 					} else {
 						if (isItem("p2") != 0 && currentGridP1[1] < currentMoveP2) {
+							statusBarP2.classList.add("hide"); //animating statusbars
+							statusBarP1.classList.remove("hide");
 							removeItem("p2");
 							currentGridP2[1] = currentMoveP2;
 							itemToDisableP2.classList.add("setDisabled");
-							//takeItem("p2", currentMoveP2);
 							if (f2.classList != "tileClickedP2") {
 								f2.classList.add("tileClickedP2");
 							}
@@ -645,10 +630,11 @@ function clickTile(tile) {
 						}
 					} else {
 						if (isItem("p2") != 0 && currentGridP1[2] < currentMoveP2) {
+							statusBarP2.classList.add("hide"); //animating statusbars
+							statusBarP1.classList.remove("hide");
 							removeItem("p2");
 							currentGridP2[2] = currentMoveP2;
 							itemToDisableP2.classList.add("setDisabled");
-							//takeItem("p2", currentMoveP2);
 							if (f3.classList != "tileClickedP2") {
 								f3.classList.add("tileClickedP2");
 							}
@@ -670,10 +656,11 @@ function clickTile(tile) {
 						}
 					} else {
 						if (isItem("p2") != 0 && currentGridP1[3] < currentMoveP2) {
+							statusBarP2.classList.add("hide"); //animating statusbars
+							statusBarP1.classList.remove("hide");
 							removeItem("p2");
 							currentGridP2[3] = currentMoveP2;
 							itemToDisableP2.classList.add("setDisabled");
-							//takeItem("p2", currentMoveP2);
 							if (f4.classList != "tileClickedP2") {
 								f4.classList.add("tileClickedP2");
 							}
@@ -695,10 +682,11 @@ function clickTile(tile) {
 						}
 					} else {
 						if (isItem("p2") != 0 && currentGridP1[4] < currentMoveP2) {
+							statusBarP2.classList.add("hide"); //animating statusbars
+							statusBarP1.classList.remove("hide");
 							removeItem("p2");
 							currentGridP2[4] = currentMoveP2;
 							itemToDisableP2.classList.add("setDisabled");
-							//takeItem("p2", currentMoveP2);
 							if (f5.classList != "tileClickedP2") {
 								f5.classList.add("tileClickedP2");
 							}
@@ -720,10 +708,11 @@ function clickTile(tile) {
 						}
 					} else {
 						if (isItem("p2") != 0 && currentGridP1[5] < currentMoveP2) {
+							statusBarP2.classList.add("hide"); //animating statusbars
+							statusBarP1.classList.remove("hide");
 							removeItem("p2");
 							currentGridP2[5] = currentMoveP2;
 							itemToDisableP2.classList.add("setDisabled");
-							//takeItem("p2", currentMoveP2);
 							if (f6.classList != "tileClickedP2") {
 								f6.classList.add("tileClickedP2");
 							}
@@ -745,10 +734,11 @@ function clickTile(tile) {
 						}
 					} else {
 						if (isItem("p2") != 0 && currentGridP1[6] < currentMoveP2) {
+							statusBarP2.classList.add("hide"); //animating statusbars
+							statusBarP1.classList.remove("hide");
 							removeItem("p2");
 							currentGridP2[6] = currentMoveP2;
 							itemToDisableP2.classList.add("setDisabled");
-							//takeItem("p2", currentMoveP2);
 							if (f7.classList != "tileClickedP2") {
 								f7.classList.add("tileClickedP2");
 							}
@@ -770,10 +760,11 @@ function clickTile(tile) {
 						}
 					} else {
 						if (isItem("p2") != 0 && currentGridP1[7] < currentMoveP2) {
+							statusBarP2.classList.add("hide"); //animating statusbars
+							statusBarP1.classList.remove("hide");
 							removeItem("p2");
 							currentGridP2[7] = currentMoveP2;
 							itemToDisableP2.classList.add("setDisabled");
-							//takeItem("p2", currentMoveP2);
 							if (f8.classList != "tileClickedP2") {
 								f8.classList.add("tileClickedP2");
 							}
@@ -795,10 +786,11 @@ function clickTile(tile) {
 						}
 					} else {
 						if (isItem("p2") != 0 && currentGridP1[8] < currentMoveP2) {
+							statusBarP2.classList.add("hide"); //animating statusbars
+							statusBarP1.classList.remove("hide");
 							removeItem("p2");
 							currentGridP2[0] = currentMoveP2;
 							itemToDisableP2.classList.add("setDisabled");
-							//takeItem("p2", currentMoveP2);
 							if (f9.classList != "tileClickedP2") {
 								f9.classList.add("tileClickedP2");
 							}
