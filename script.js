@@ -342,6 +342,7 @@ function clickTile(tile) {
 							currentGridP1[0] = currentMoveP1;
 							itemToDisableP1.classList.add("setDisabled");
 							//coloring tile
+							f1.innerHTML = currentMoveP1;
 							if (f1.classList != "tileClickedP1") {
 								f1.classList.add("tileClickedP1"); //
 							}
@@ -370,6 +371,7 @@ function clickTile(tile) {
 							removeItem("p1");
 							currentGridP1[1] = currentMoveP1;
 							itemToDisableP1.classList.add("setDisabled");
+							f2.innerHTML = currentMoveP1;
 							if (f2.classList != "tileClickedP1") {
 								f2.classList.add("tileClickedP1");
 							}
@@ -397,6 +399,7 @@ function clickTile(tile) {
 							removeItem("p1");
 							currentGridP1[2] = currentMoveP1;
 							itemToDisableP1.classList.add("setDisabled");
+							f3.innerHTML = currentMoveP1;
 							if (f3.classList != "tileClickedP1") {
 								f3.classList.add("tileClickedP1");
 							}
@@ -424,6 +427,7 @@ function clickTile(tile) {
 							removeItem("p1");
 							currentGridP1[3] = currentMoveP1;
 							itemToDisableP1.classList.add("setDisabled");
+							f4.innerHTML = currentMoveP1;
 							if (f4.classList != "tileClickedP1") {
 								f4.classList.add("tileClickedP1");
 							}
@@ -451,6 +455,7 @@ function clickTile(tile) {
 							removeItem("p1");
 							currentGridP1[4] = currentMoveP1;
 							itemToDisableP1.classList.add("setDisabled");
+							f5.innerHTML = currentMoveP1;
 							if (f5.classList != "tileClickedP1") {
 								f5.classList.add("tileClickedP1");
 							}
@@ -478,6 +483,7 @@ function clickTile(tile) {
 							removeItem("p1");
 							currentGridP1[5] = currentMoveP1;
 							itemToDisableP1.classList.add("setDisabled");
+							f6.innerHTML = currentMoveP1;
 							if (f6.classList != "tileClickedP1") {
 								f6.classList.add("tileClickedP1");
 							}
@@ -505,6 +511,7 @@ function clickTile(tile) {
 							removeItem("p1");
 							currentGridP1[6] = currentMoveP1;
 							itemToDisableP1.classList.add("setDisabled");
+							f7.innerHTML = currentMoveP1;
 							if (f7.classList != "tileClickedP1") {
 								f7.classList.add("tileClickedP1");
 							}
@@ -532,6 +539,7 @@ function clickTile(tile) {
 							removeItem("p1");
 							currentGridP1[7] = currentMoveP1;
 							itemToDisableP1.classList.add("setDisabled");
+							f8.innerHTML = currentMoveP1;
 							if (f8.classList != "tileClickedP1") {
 								f8.classList.add("tileClickedP1");
 							}
@@ -559,6 +567,7 @@ function clickTile(tile) {
 							removeItem("p1");
 							currentGridP1[8] = currentMoveP1;
 							itemToDisableP1.classList.add("setDisabled");
+							f9.innerHTML = currentMoveP1;
 							if (f9.classList != "tileClickedP1") {
 								f9.classList.add("tileClickedP1");
 							}
@@ -592,6 +601,7 @@ function clickTile(tile) {
 							removeItem("p2");
 							currentGridP2[0] = currentMoveP2;
 							itemToDisableP2.classList.add("setDisabled");
+							f1.innerHTML = currentMoveP2;
 							if (f1.classList != "tileClickedP2") {
 								f1.classList.add("tileClickedP2");
 							}
@@ -620,6 +630,7 @@ function clickTile(tile) {
 							removeItem("p2");
 							currentGridP2[1] = currentMoveP2;
 							itemToDisableP2.classList.add("setDisabled");
+							f2.innerHTML = currentMoveP2;
 							if (f2.classList != "tileClickedP2") {
 								f2.classList.add("tileClickedP2");
 							}
@@ -647,6 +658,7 @@ function clickTile(tile) {
 							removeItem("p2");
 							currentGridP2[2] = currentMoveP2;
 							itemToDisableP2.classList.add("setDisabled");
+							f3.innerHTML = currentMoveP2;
 							if (f3.classList != "tileClickedP2") {
 								f3.classList.add("tileClickedP2");
 							}
@@ -674,6 +686,7 @@ function clickTile(tile) {
 							removeItem("p2");
 							currentGridP2[3] = currentMoveP2;
 							itemToDisableP2.classList.add("setDisabled");
+							f4.innerHTML = currentMoveP2;
 							if (f4.classList != "tileClickedP2") {
 								f4.classList.add("tileClickedP2");
 							}
@@ -701,6 +714,7 @@ function clickTile(tile) {
 							removeItem("p2");
 							currentGridP2[4] = currentMoveP2;
 							itemToDisableP2.classList.add("setDisabled");
+							f5.innerHTML = currentMoveP2;
 							if (f5.classList != "tileClickedP2") {
 								f5.classList.add("tileClickedP2");
 							}
@@ -728,6 +742,7 @@ function clickTile(tile) {
 							removeItem("p2");
 							currentGridP2[5] = currentMoveP2;
 							itemToDisableP2.classList.add("setDisabled");
+							f6.innerHTML = currentMoveP2;
 							if (f6.classList != "tileClickedP2") {
 								f6.classList.add("tileClickedP2");
 							}
@@ -755,6 +770,7 @@ function clickTile(tile) {
 							removeItem("p2");
 							currentGridP2[6] = currentMoveP2;
 							itemToDisableP2.classList.add("setDisabled");
+							f7.innerHTML = currentMoveP2;
 							if (f7.classList != "tileClickedP2") {
 								f7.classList.add("tileClickedP2");
 							}
@@ -782,6 +798,7 @@ function clickTile(tile) {
 							removeItem("p2");
 							currentGridP2[7] = currentMoveP2;
 							itemToDisableP2.classList.add("setDisabled");
+							f8.innerHTML = currentMoveP2;
 							if (f8.classList != "tileClickedP2") {
 								f8.classList.add("tileClickedP2");
 							}
@@ -809,6 +826,7 @@ function clickTile(tile) {
 							removeItem("p2");
 							currentGridP2[0] = currentMoveP2;
 							itemToDisableP2.classList.add("setDisabled");
+							f9.innerHTML = currentMoveP2;
 							if (f9.classList != "tileClickedP2") {
 								f9.classList.add("tileClickedP2");
 							}
@@ -1071,6 +1089,14 @@ function reset() {
 	removeClassFromAllElements("setDisabled");
 	removeClassFromAllElements("tileClickedP1");
 	removeClassFromAllElements("tileClickedP2");
+
+	removeNums();
+}
+function removeNums() {
+	for (let i = 1; i <= 9; i++) {
+		let element = document.getElementById("f" + i);
+		element.innerHTML = "";
+	}
 }
 // Remove a class from all elements
 function removeClassFromAllElements(className) {
